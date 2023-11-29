@@ -478,11 +478,20 @@ footer {
     min-width: 833.3px;
 }
 
-.prod-li{
-    max-width: 271.5px;
+.prod-li {
+    width: 271.5px;
     min-height: 360px;
     border: 1px solid #e7e7e7;
     border-radius: 2px;
     margin: 0 1% 1% 0;
     background-color: red;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.prod-li img {
+    width: 100%;
+    height: auto;
+    display: block;
 }

@@ -63,10 +63,11 @@
                 <div class="container">
                     <div class="row">
                         <div class="col prod-li">
-                            <img src="../assets/images/" alt="">
+                            <img src="../assets/images/bravas.png" alt="">
                             <div class="text-btn-prod">
                                 <div class="text-prod">
-
+                                    <h2>Producto 1</h2>
+                                    <bdi>10.00€</bdi>
                                 </div>
                                 <button class="btn-prod">Añadir Producto</button>
                             </div>
