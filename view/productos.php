@@ -69,8 +69,8 @@
                                     <h2>Producto 1</h2>
                                     <bdi>10,00€</bdi>
                                 </div>
-                                <button class="btn-prod float-end">Añadir Producto</button>
                             </div>
+                            <button class="btn-prod">Añadir Producto</button>
                         </div>
                         <div class="col prod-li">test2</div>
                         <div class="col prod-li">test3</div>
