@@ -45,14 +45,12 @@
     require_once('../model/productoDAO.php');
 
     //Usar para filtros y sección lateral de página
-    //$categorias = categoriaDAO::getAllCat();
-
-    //echo '<pre style="margin-top: 150px;">';
-    //print_r($categorias);
-    //echo '</pre>';
-
-    ////Usar para mostrar todos los productos
-    //$productos = productoDAO::getAllProductos();
+    $categorias = categoriaDAO::getAllCat();
+    echo '<pre style="margin-top: 150px;">';
+    print_r($categorias);
+    echo '</pre>';
+    //Usar para mostrar todos los productos
+    $productos = productoDAO::getAllProductos();
 
     ?>
 
@@ -83,26 +81,22 @@
         </div>
     </div>
     <?php
-    //echo '<br><br><br><br><br><pre>';
-    //print_r($productos);
-    //echo '</pre>';
-
+    echo '<br><br><br><br><br><pre>';
+    print_r($productos);
+    echo '</pre>';
     //Usar esta parte de codigo para el funcionamiento del boton de añadir
-    //$imagen = productoDAO::selectProd(3);
-
-    //if ($imagen->num_rows > 0) {
-    //    $fila = $imagen->fetch_assoc();
-//
-    //    echo "<h2>Información del producto</h2>";
-    //    echo "<p><strong>ID del producto:</strong> " . $fila['IDproducto'] . "</p>";
-    //    echo "<p><strong>Nombre del producto:</strong> " . $fila['nombreDeProducto'] . "</p>";
-    //    echo "<p><strong>Precio del producto:</strong> " . $fila['precio'] . "</p>";
-    //    echo "<p><strong>Imagen del producto:</strong></p><img src='../assets/images/" . $fila['imagen'] . "' 
-    //    width='150px' height='100px'>";
-    //} else {
-    //    echo "<p>No se encontraron resultados para la categoría con ID 3</p>";
-    //}
-
+    $imagen = productoDAO::selectProd(3);
+    if ($imagen->num_rows > 0) {
+        $fila = $imagen->fetch_assoc();
+        echo "<h2>Información del producto</h2>";
+        echo "<p><strong>ID del producto:</strong> " . $fila['IDproducto'] . "</p>";
+        echo "<p><strong>Nombre del producto:</strong> " . $fila['nombreDeProducto'] . "</p>";
+        echo "<p><strong>Precio del producto:</strong> " . $fila['precio'] . "</p>";
+        echo "<p><strong>Imagen del producto:</strong></p><img src='../assets/images/" . $fila['imagen'] . "' 
+        width='150px' height='100px'>";
+    } else {
+        echo "<p>No se encontraron resultados para la categoría con ID 3</p>";
+    }
     ?>
 
     <!--FOOTER-->
