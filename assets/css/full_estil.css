@@ -503,9 +503,14 @@ footer {
 }
 
 .text-btn-prod{
+    border-top: 1px solid #e1e1e1;
     padding: 10px 15px 15px;
     display: flex;
     font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.text-prod{
+    max-width: 208px;
 }
 
 .text-btn-prod h2{

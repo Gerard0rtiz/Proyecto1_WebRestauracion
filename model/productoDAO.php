@@ -3,11 +3,11 @@ require_once('../config/database.php');
 
 class productoDAO
 {
-  //Obtención de todas las categorias en un array
+  //Obtención de todas los productos en un array
   public static function getAllProductos()
   {
     $con = database::connect();
-    $categorias = array();
+    $producto = array();
 
     $sql = "SELECT * FROM productos";
     $stmt = $con->prepare($sql);
