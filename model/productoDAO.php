@@ -1,5 +1,6 @@
 <?php
-require_once('../config/database.php');
+require_once('config/database.php');
+require_once('model/producto.php');
 
 class productoDAO
 {
@@ -7,7 +8,7 @@ class productoDAO
   public static function getAllProductos()
   {
     $con = database::connect();
-    $producto = array();
+    $productos = [];
 
     $sql = "SELECT * FROM productos";
     $stmt = $con->prepare($sql);
@@ -15,12 +16,7 @@ class productoDAO
     $stmt->bind_result($idProd, $imagenProd, $nombreProd, $precioProd, $idCat);
 
     while ($stmt->fetch()) {
-      $producto = new stdClass();
-      $producto->idProd = $idProd;
-      $producto->imagenProd = $imagenProd;
-      $producto->nombreProd = $nombreProd;
-      $producto->precioProd = $precioProd;
-      $producto->idCategoria = $idCat;
+      $producto = new Producto($idProd, $imagenProd, $nombreProd, $precioProd, $idCat);
       $productos[] = $producto;
     }
 

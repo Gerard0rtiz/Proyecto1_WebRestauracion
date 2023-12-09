@@ -16,28 +16,9 @@
 
 <body>
   <!--HEADER-->
-  <header>
-    <div class="hd-black">
-      <div class="info-hd-black">
-        <p>Reserva en Tel. 977 66 37 76 Horario L-V 10h-14h y 16h-20h S-D 10h-20h</p>
-        <img src="../assets/icons/banderas.png" alt="banderas ESP-UK-FRE">
-      </div>
-    </div>
-    <div class="hd-menu">
-      <div class="items-menu">
-        <a href="../view/index.php"><img src="../assets/images/logoKarting.png" alt="logoKarting"></a>
-        <nav class="nav-menu">
-          <div class="list-menu">
-            <ul>
-              <li <?php if (basename($_SERVER['PHP_SELF']) === 'index.php') echo 'class="current"'; ?>><a href="index.php">Inicio</a></li>
-              <li <?php if (basename($_SERVER['PHP_SELF']) === 'productos.php') echo 'class="current"'; ?>><a href="productos.php">Productos</a></li>
-              <li <?php if (basename($_SERVER['PHP_SELF']) === 'carrito.php') echo 'class="current"'; ?>><a href="carrito.php">Finalizar compra</a></li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </div>
-  </header>
+  <?php
+  include_once "header.php";
+  ?>
 
   <!--SLIDE IMÁGENES-->
   <div id="carouselExampleCaptions" class="carousel slide">
