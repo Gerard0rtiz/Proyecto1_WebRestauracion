@@ -8,11 +8,28 @@
     //$categorias = $resultado['categorias'];
     ?>
 
-    <!--PRODUCTOS-->
+    <!--PRODUCTOS Y FILTRO-->
     <div class="section-prod">
         <div class="inner-sect">
             <main class="productos">
                 <div class="container">
+                    <!--FILTROS-->
+                    <div class="filtros">
+                        <form class="formSelect" action="" method="post">
+                            <select class="selectorProds" name="filtroProductos" id="filtro1">
+                                <option value="3">Mostrar 3 productos</option>
+                                <option value="6">Mostrar 6 productos</option>
+                                <option value="9">Mostrar 9 productos</option>
+                            </select>
+                            <select class="selectorProds" name="filtroCategoria" id="filtro2">
+                                <option value="Entrantes">Entrantes</option>
+                                <option value="Bebidas">Bebidas</option>
+                                <option value="PlatosCombinados">Platos Combinados</option>
+                                <option value="Principal">Principal</option>
+                            </select>
+                        </form>
+                    </div>
+                    <!--PRODUCTOS-->
                     <?php $cont = 0; ?>
                     <div class="row">
                         <?php if (isset($productos) && is_array($productos)) : ?>
@@ -48,9 +65,9 @@
             <!--SIDEBAR-->
             <aside class="lateral-sb">
                 <?php
-                    //foreach ($categorias as $categoria) :
-                    //    echo 'ID: ' . $categoria->idCategoria . ', Nombre: ' . $categoria->nombreCategoria . '<br>';
-                    //endforeach;
+                    foreach ($categorias as $categoria) :
+                        echo $categoria->nombreCategoria.'<br>';
+                    endforeach;
                 ?>
             </aside>
         </div>

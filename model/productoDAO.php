@@ -33,10 +33,13 @@ class productoDAO
     $stmt = $con->prepare("SELECT * FROM productos WHERE IDproducto=?");
     $stmt->bind_param("i", $idProd);
     $stmt->execute();
-    $result=$stmt->get_result();
+    $stmt->bind_result($idProd, $imagenProd, $nombreProd, $precioProd, $idCat);
+    $stmt->fetch();
+    $producto = new Producto($idProd, $imagenProd, $nombreProd, $precioProd, $idCat);
 
+    $stmt->close();
     $con->close();
-    return $result;
+    return $producto;
 }
 
   //Inserción de nuevo producto

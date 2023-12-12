@@ -32,10 +32,18 @@
                             <li><a href="../index.php?controller=Producto">Productos</a></li>
                             <li>
                                 <a href="../index.php?controller=Producto&action=compra">
-                                    Finalizar compra 
-                                    <?php session_start();  if(isset($_SESSION['selectedProd'])){
-                                        echo "(".count($_SESSION['selectedProd']).")";
-                                    }?></a>
+                                    Finalizar compra
+                                    <?php 
+                                    if (session_status() == PHP_SESSION_NONE) {
+                                        session_start();
+                                    }
+                                    if (isset($_SESSION['selectedProd'])) {
+                                        if(count($_SESSION['selectedProd']) > 0){
+                                            echo "(" . count($_SESSION['selectedProd']) . ")";
+                                        }
+                                    }
+                                    ?>
+                                </a>
                             </li>
                         </ul>
                     </div>

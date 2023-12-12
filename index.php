@@ -16,7 +16,11 @@ if(!isset($_GET['controller'])){
             $action = "index";
         }
 
-        $controller->$action();
+        if($action != 'index'){
+            $controller->$action();
+        }else{
+            $controller->index("");
+        }
     }else{
         header("Location:view/landing.php");
     }
