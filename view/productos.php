@@ -1,14 +1,14 @@
+<?php
+//require '../controller/productoController.php';
 
-    <?php
-    //require '../controller/productoController.php';
+//$controller = new productoController();
+//$resultado = $controller->index();
+//$productos = $resultado['productos'];
+//$categorias = $resultado['categorias'];
+?>
 
-    //$controller = new productoController();
-    //$resultado = $controller->index();
-    //$productos = $resultado['productos'];
-    //$categorias = $resultado['categorias'];
-    ?>
-
-    <!--PRODUCTOS Y FILTRO-->
+<!--PRODUCTOS Y FILTRO-->
+<div class="elements-prod">
     <div class="section-prod">
         <div class="inner-sect">
             <main class="productos">
@@ -42,9 +42,9 @@
                                             <bdi><?= $producto->getPrecioProd(); ?>€</bdi>
                                         </div>
                                     </div>
-                                    <form action="<?='?controller=Producto&action=selection'?>" method="post">
-                                        <input type="hidden" name="id" value="<?=$producto->getIdProd()?>">
-                                        <input type="hidden" name="idcat" value="<?=$producto->getIdCat()?>">
+                                    <form action="<?= '?controller=Producto&action=selection' ?>" method="post">
+                                        <input type="hidden" name="id" value="<?= $producto->getIdProd() ?>">
+                                        <input type="hidden" name="idcat" value="<?= $producto->getIdCat() ?>">
                                         <button type="submit" class="btn-prod">Añadir Producto</button>
                                     </form>
                                 </div>
@@ -61,31 +61,36 @@
                     </div>
                 </div>
             </main>
-
-            <!--SIDEBAR-->
-            <aside class="lateral-sb">
-                <?php
-                    foreach ($categorias as $categoria) :
-                        echo $categoria->nombreCategoria.'<br>';
-                    endforeach;
-                ?>
-            </aside>
         </div>
     </div>
 
-    <?php
+    <!--SIDEBAR-->
+    <aside class="lateral-sb">
+        <div>
+            <h3>CATEGORIAS</h3>
+            <?php
+            foreach ($categorias as $categoria) :
+                echo "<p>".$categoria->nombreCategoria."</p>";
+            endforeach;
+            ?>
+            <h3 class="destacadosProd">DESTACADOS</h3>
+        </div>
+    </aside>
+</div>
 
-    //Usar esta parte de codigo para el funcionamiento del boton de añadir
-    //$imagen = productoDAO::selectProd(3);
-    //if ($imagen->num_rows > 0) {
-    //    $fila = $imagen->fetch_assoc();
-    //    echo "<h2>Información del producto</h2>";
-    //    echo "<p><strong>ID del producto:</strong> " . $fila['IDproducto'] . "</p>";
-    //    echo "<p><strong>Nombre del producto:</strong> " . $fila['nombreDeProducto'] . "</p>";
-    //    echo "<p><strong>Precio del producto:</strong> " . $fila['precio'] . "</p>";
-    //    echo "<p><strong>Imagen del producto:</strong></p><img src='../assets/images/" . $fila['imagen'] . "' 
-    //    width='150px' height='100px'>";
-    //} else {
-    //    echo "<p>No se encontraron resultados para la categoría con ID 3</p>";
-    //}
-    ?>    
+<?php
+
+//Usar esta parte de codigo para el funcionamiento del boton de añadir
+//$imagen = productoDAO::selectProd(3);
+//if ($imagen->num_rows > 0) {
+//    $fila = $imagen->fetch_assoc();
+//    echo "<h2>Información del producto</h2>";
+//    echo "<p><strong>ID del producto:</strong> " . $fila['IDproducto'] . "</p>";
+//    echo "<p><strong>Nombre del producto:</strong> " . $fila['nombreDeProducto'] . "</p>";
+//    echo "<p><strong>Precio del producto:</strong> " . $fila['precio'] . "</p>";
+//    echo "<p><strong>Imagen del producto:</strong></p><img src='../assets/images/" . $fila['imagen'] . "' 
+//    width='150px' height='100px'>";
+//} else {
+//    echo "<p>No se encontraron resultados para la categoría con ID 3</p>";
+//}
+?>
