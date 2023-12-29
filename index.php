@@ -3,7 +3,7 @@ include_once "config/parameters.php";
 include_once 'controller/productoController.php';
 
 if(!isset($_GET['controller'])){
-    header('Location:'.$url.'view/landing.php');
+    header('Location:'.$url.'view/login.php');
 }else{
     $nombre_controller = $_GET['controller'].'Controller';
 
