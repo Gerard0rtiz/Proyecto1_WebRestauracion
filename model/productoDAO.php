@@ -75,7 +75,7 @@ class productoDAO
   {
     $con = database::connect();
 
-    $stmt = $con->prepare("UPDATE productos SET imagen=?, nombreDeProducto=?, precio=?, IDcategoria=?  WHERE IDproducto=?");
+    $stmt = $con->prepare("UPDATE productos SET imagen=?, nombreDeProducto=?, precio=?, IDcategoría=? WHERE IDproducto=?");
     $stmt->bind_param("ssdii", $imagenProd, $nombreProd, $precioProd, $idCat, $idProd);
 
     $stmt->execute();

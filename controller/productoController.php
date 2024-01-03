@@ -143,4 +143,82 @@ class ProductoController
             //header("Location:index.php?controller=");
         }
     }
+
+    public function checkUser(){
+        include_once 'model/usuarioDAO.php';
+        $user = $_POST['user'];
+        $pwd = $_POST['pwd'];
+
+        $resultado = UsuarioDAO::checkUserPasswd($user, $pwd);
+        
+        if($resultado == "okUser"){
+            session_start();
+            $_SESSION['activeUser'] = $user;
+            header("Location:view/landing.php");
+        } else{
+            header("Location:view/login.php?errorCode=".$resultado);
+        }
+    }
+
+    public function deleteProducto(){
+        if(isset($_POST['id'])){
+            $idProd = $_POST['id'];
+        productoDAO::deleteProduct($idProd);
+        header("Location:index.php?controller=Producto");
+        }
+    }
+
+    public function addProducto(){
+        if(isset($_POST['id'])){
+            $idProd = $_POST['id'];
+            $nombre = $_POST['nombre'];
+            $precio = $_POST['precio'];
+            $imagen = $_POST['imagen'];
+            $categoria = $_POST['categoria'];
+            productoDAO::insertProduct($idProd, $imagen, $nombre, $precio, $categoria);
+        }
+        header("Location:index.php?controller=Producto");
+    }
+
+    public function editProducto(){
+        if(isset($_POST['id'])){
+            $idProd = $_POST['id'];
+            $nombre = $_POST['nombre'];
+            $precio = $_POST['precio'];
+            $imagen = $_POST['imagen'];
+            $categoria = $_POST['categoria'];
+            productoDAO::updateProduct($imagen, $nombre, $precio, $categoria, $idProd);
+        header("Location:index.php?controller=Producto");
+        }
+    }
+
+    public function getAllCat(){
+        $categorias = categoriaDAO::getAllCat();
+        return $categorias;
+    }
+
+    public function editProductoIndex()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $categorias = categoriaDAO::getAllCat();
+
+        include_once "view/header.php";
+        include_once "view/editProd.php";
+        include_once "view/footer.php";
+    }
+
+    public function addProductoIndex()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $categorias = categoriaDAO::getAllCat();
+        $productos = ProductoDAO::getAllProductos();
+
+        include_once "view/header.php";
+        include_once "view/addProd.php";
+        include_once "view/footer.php";
+    }
 }

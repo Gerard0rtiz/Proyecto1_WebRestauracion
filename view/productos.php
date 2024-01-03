@@ -28,6 +28,11 @@
                                 <option value="Principal">Principal</option>
                             </select>
                         </form>
+                        <?php if ($_SESSION['activeUser'] == "admin") : ?>
+                            <form action="<?= '?controller=Producto&action=addProductoIndex' ?>" method="post">
+                                <button type="submit" class="btn-addProd">Nuevo producto</button>
+                            </form>
+                        <?php endif; ?>
                     </div>
                     <!--PRODUCTOS-->
                     <?php $cont = 0; ?>
@@ -45,8 +50,20 @@
                                     <form action="<?= '?controller=Producto&action=selection' ?>" method="post">
                                         <input type="hidden" name="id" value="<?= $producto->getIdProd() ?>">
                                         <input type="hidden" name="idcat" value="<?= $producto->getIdCat() ?>">
-                                        <button type="submit" class="btn-prod">Añadir Producto</button>
+                                        <button type="submit" class="btn-prod">Comprar</button>
                                     </form>
+
+                                    <?php if ($_SESSION['activeUser'] == "admin") : ?>
+                                        <form action="<?= '?controller=Producto&action=deleteProducto' ?>" method="post">
+                                            <input type="hidden" name="id" value="<?= $producto->getIdProd() ?>">
+                                            <button type="submit" class="btn-delProd">Eliminar producto</button>
+                                        </form>
+                                        <form action="<?= '?controller=Producto&action=editProductoIndex' ?>" method="post">
+                                            <?php $postvalue = base64_encode(serialize($producto)); ?>
+                                            <input type="hidden" name="productoObj" value="<?= $postvalue ?>">
+                                            <button type="submit" class="btn-editProd">Editar producto</button>
+                                        </form>
+                                    <?php endif; ?>
                                 </div>
                                 <?php
                                 $cont++;
@@ -70,27 +87,10 @@
             <h3>CATEGORIAS</h3>
             <?php
             foreach ($categorias as $categoria) :
-                echo "<p>".$categoria->nombreCategoria."</p>";
+                echo "<p>" . $categoria->nombreCategoria . "</p>";
             endforeach;
             ?>
             <h3 class="destacadosProd">DESTACADOS</h3>
         </div>
     </aside>
 </div>
-
-<?php
-
-//Usar esta parte de codigo para el funcionamiento del boton de añadir
-//$imagen = productoDAO::selectProd(3);
-//if ($imagen->num_rows > 0) {
-//    $fila = $imagen->fetch_assoc();
-//    echo "<h2>Información del producto</h2>";
-//    echo "<p><strong>ID del producto:</strong> " . $fila['IDproducto'] . "</p>";
-//    echo "<p><strong>Nombre del producto:</strong> " . $fila['nombreDeProducto'] . "</p>";
-//    echo "<p><strong>Precio del producto:</strong> " . $fila['precio'] . "</p>";
-//    echo "<p><strong>Imagen del producto:</strong></p><img src='../assets/images/" . $fila['imagen'] . "' 
-//    width='150px' height='100px'>";
-//} else {
-//    echo "<p>No se encontraron resultados para la categoría con ID 3</p>";
-//}
-?>

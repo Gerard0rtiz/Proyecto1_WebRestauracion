@@ -45,6 +45,18 @@
                                     ?>
                                 </a>
                             </li>
+                            <li>
+                                <p class="username">
+                                <?php
+                                    if (session_status() == PHP_SESSION_NONE) {
+                                        session_start();
+                                    }
+                                    if(isset($_SESSION['activeUser'])){
+                                        echo "Usuario: ".$_SESSION['activeUser'];
+                                    }
+                                ?>
+                                </p>
+                            </li>
                         </ul>
                     </div>
                 </nav>

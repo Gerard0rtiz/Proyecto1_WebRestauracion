@@ -14,10 +14,21 @@
     <link href="../assets/css/full_estil.css" rel="stylesheet" type="text/css" media="screen">
 </head>
 <div id="login">
-    <form name='form-login'>
+    <?php
+        if(isset($_GET['errorCode'])){
+            if($_GET['errorCode'] == "noUser"){
+                //PULIR MENSAJE DE ERROR
+                echo "<h4>USUARIO INCORRECTO</h4>";
+            }
+            if($_GET['errorCode'] == "noPwd"){
+                echo "<h4>CONTRASEÑA INCORRECTA</h4>";
+            }
+        }
+    ?>
+    <form name='form-login' action="<?= '/index.php?controller=Producto&action=checkUser' ?>" method="post">
 
-        <input class="inp-log" type="text" id="user" placeholder="Usuario">
-        <input class="inp-log" type="password" id="pass" placeholder="Contraseña">
+        <input name="user" class="inp-log" type="text" id="user" placeholder="Usuario">
+        <input name="pwd" class="inp-log" type="password" id="pass" placeholder="Contraseña">
 
         <input class="inp-log" type="submit" value="Login">
 

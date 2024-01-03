@@ -180,6 +180,12 @@ header {
     color: black;
 }
 
+.username{
+    padding-top: 27px;
+    margin-bottom: 0px;
+    margin-left: 8px;
+}
+
 /*FOOTER*/
 footer {
     font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -599,7 +605,8 @@ footer {
 }
 
 .prod-li {
-    width: 280px;
+    max-width: 270px;
+    width: 270px;
     min-height: 360px;
     border: 1px solid #e1e1e1;
     border-radius: 2px;
@@ -868,4 +875,79 @@ footer {
     font-size: 14px;
     font-weight: 500;
     background-color: #fcfcfc;
+}
+
+/*GESTION ADMIN*/
+
+/*BOTONES PRODUCTOS*/
+
+
+/*EDITAR*/
+.h2-edit{
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-top: 120px;
+    margin-left: 120px;
+}
+
+.form-editProd{
+    margin-top: 20px;
+    margin-left: 120px;
+    margin-bottom: 40px;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+}
+
+.form-editProd input{
+    border: 1px solid #333333;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.form-editProd select{
+    border: 1px solid #333333;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.form-editProd button{
+    background-color: #a81010;
+    color: white;
+    border: 1px solid transparent;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/*AÑADIR*/
+.h2-add{
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-top: 120px;
+    margin-left: 120px;
+}
+
+.form-addProd{
+    margin-top: 20px;
+    margin-left: 120px;
+    margin-bottom: 40px;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+}
+
+.form-addProd input{
+    border: 1px solid #333333;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.form-addProd select{
+    border: 1px solid #333333;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.form-addProd button{
+    background-color: #a81010;
+    color: white;
+    border: 1px solid transparent;
+    padding: 10px;
+    border-radius: 5px;
 }
