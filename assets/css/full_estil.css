@@ -72,6 +72,7 @@ after {
     margin-top: 130px;
     margin-bottom: -120px;
     width: 100%;
+    max-width: 66%;
     background-color: #E0F1B5;
     color: #4F5F39;
     border: 1px solid #8BAF5B;
@@ -708,13 +709,17 @@ footer {
 
 /*CARRITO CON CONTENIDO*/
 
+.carritoLleno{
+    margin-left: 110px;
+    margin-bottom: 50px;
+}
+
 .carrito-compra {
     display: flex;
 }
 
 .table-prods {
-    margin-top: 160px;
-    margin-left: 154px;
+    margin-top: 155px;
     font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
     padding-right: 50px;
 }
@@ -735,11 +740,14 @@ footer {
     color: #666666;
     letter-spacing: 1.5px;
     font-weight: 600;
+    padding: 9px 12px;
 }
 
 .tbl-compra td {
     color: #666666;
     font-size: 13px;
+    height: 56px;
+    padding: 6px 12px;
 }
 
 .tbl-nombreProd {
@@ -749,11 +757,9 @@ footer {
 
 .btnDel {
     border: none;
-    padding-left: 12px;
-    padding-right: 28px;
-    padding-top: 12px;
-    padding-bottom: 12px;
     background-color: transparent;
+    padding: 0px;
+    margin-left: -5px;
 }
 
 .btnDel img {
@@ -764,6 +770,111 @@ footer {
 .tbl-imgProd {
     width: 32px;
     height: 32px;
+    margin: 6px 12px;
+}
+
+.cantidadProducto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.restaCantidad, .sumaCantidad{
+    width: 43px;
+    height: 43px;
+    background-color: #ebebeb;
+    color: #919191;
+    border: 1px solid #e1e1e1;
+}
+
+.valorCantidad{
+    border-top: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    background-color: #ffffff;
+    width: 43px;
+    height: 43px;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tbl-totalCompra{
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding-right: 50px;
+    width: 400px;
+    max-width: 400px;
+    margin-top: 25px;
+}
+
+.tbl-totalCompra h2{
+    font-size: 14px;
+    margin: 0px 0px 10px;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.tbl-total{
+    background-color: #fcfcfc;
+    padding: 6px 24px;
+}
+
+.tbl-total th,
+.tbl-total td{
+    border-collapse: collapse;
+    border: 1px solid #e1e1e1;
+}
+
+.tbl-total th{
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 24px;
+    width: 229.8px;
+    height: 36px;
+    letter-spacing: 1.5px;
+}
+
+.tbl-total td{
+    font-size: 13px;
+    padding: 6px 24px;
+    height: 36px;
+    width: 169.1px;
+}
+
+.finCompra{
+    margin-top: 10px;
+}
+
+.btn-finCompra{
+    transition: 500ms;
+    border-radius: 2px;
+    border: none;
+    background-color: #a81010;
+    font-size: 13px;
+    color: white;
+    margin: 4px 2px 0px 0px;
+    padding: 15px;
+    width: 193px;
+    height: 43px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-finCompra:hover{
+    transition: 500ms;
+    border-radius: 2px;
+    border: none;
+    background-color: #eb3b3b;
+    font-size: 13px;
+    color: white;
+    margin: 4px 2px 0px 0px;
+    padding: 15px;
+    width: 193px;
+    height: 43px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /*CARRITO VACÍO*/
@@ -880,7 +991,50 @@ footer {
 /*GESTION ADMIN*/
 
 /*BOTONES PRODUCTOS*/
+.btn-productos{
+    display: flex;
+}
 
+.btn-admins{
+    display: flex;
+    margin: 10px 15px 15px;
+}
+
+.btn-addProd{
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 13px;
+    background-color: #a81010;
+    color: white;
+    border: 1px solid transparent;
+    padding: 10px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+}
+
+.btn-editProd{
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 13px;
+    background-color: #a81010;
+    color: white;
+    border: 1px solid transparent;
+    padding: 8px;
+    border-radius: 2px;
+    width: 45px;
+    height: 48px;
+    margin-right: 10px;
+}
+
+.btn-delProd{
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 13px;
+    background-color: #a81010;
+    color: white;
+    border: 1px solid transparent;
+    padding: 8px;
+    border-radius: 2px;
+    width: 45px;
+    height: 48px;
+}
 
 /*EDITAR*/
 .h2-edit{

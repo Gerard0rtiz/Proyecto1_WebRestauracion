@@ -12,10 +12,10 @@ class ProductoController
         $productos = ProductoDAO::getAllProductos();
         $categorias = categoriaDAO::getAllCat();
         include_once "view/header.php";
-        if($mensaje == 'okSelection'){
+        if ($mensaje == 'okSelection') {
             echo "<div class='mensajeCorrecto'><p>Producto añadido a la cesta correctamente</p></div>";
         }
-        if($mensaje == 'okPedido'){
+        if ($mensaje == 'okPedido') {
             echo "<div class='mensajeCorrecto'><p>Pedido realizado correctamente</p></div>";
         }
         include_once "view/productos.php";
@@ -58,12 +58,14 @@ class ProductoController
                 }
 
                 if ($encontrado == false) {
+                    $cont++;
                     $_SESSION['selectedProd'][] = array(
                         'producto' => $producto,
                         'cantidad' => 1
                     );
                 }
             } else {
+                $cont++;
                 $_SESSION['selectedProd'][] = array(
                     'producto' => $producto,
                     'cantidad' => 1
@@ -73,11 +75,43 @@ class ProductoController
         }
     }
 
-    public function okSelection(){
+    public function sumarProd()
+    {
+        if (isset($_POST['posicionSelectedProd'])) {
+            $posicionProducto = $_POST['posicionSelectedProd'];
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+            $_SESSION['selectedProd'][$posicionProducto]['cantidad']++;
+            
+            header("Location:index.php?controller=Producto&action=compra");
+        }
+    }
+
+    public function restarProd()
+    {
+        if (isset($_POST['posicionSelectedProd'])) {
+            $posicionProducto = $_POST['posicionSelectedProd'];
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+            $_SESSION['selectedProd'][$posicionProducto]['cantidad']--;
+            if($_SESSION['selectedProd'][$posicionProducto]['cantidad'] == 0){
+                unset($_SESSION['selectedProd'][$posicionProducto]);
+                $_SESSION['selectedProd'] = array_values($_SESSION['selectedProd']);
+            }
+            
+            header("Location:index.php?controller=Producto&action=compra");
+        }
+    }
+
+    public function okSelection()
+    {
         ProductoController::index('okSelection');
     }
 
-    public function okPedido(){
+    public function okPedido()
+    {
         ProductoController::index('okPedido');
     }
 
@@ -117,59 +151,62 @@ class ProductoController
 
     public function pedidoPagado()
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         include_once 'model/producto.php';
         include_once 'model/pedido.php';
         include_once 'model/pedidoDAO.php';
 
         if (isset($_POST['pedido'])) {
             $pedido = unserialize(base64_decode($_POST['pedido']));
-            $idPedido = date("Y-m-d") . "-" . date("H:i:s")."-USERTESTING"; //MODIFICAR USERS
-            print_r($pedido);
-            if (session_status() == PHP_SESSION_NONE) {
-                session_start();
-            }
-            
-            foreach($pedido as $lineaPedido){
+            $idPedido = date("Y-m-d") . "-" . date("H:i:s") . "-" . $_SESSION['activeUser'];
+
+            foreach ($pedido as $lineaPedido) {
                 PedidoDAO::insertProduct(
                     $idPedido,
                     $lineaPedido['producto']->getIdProd(),
                     date("Y-m-d"),
-                    "admin",
+                    $_SESSION['activeUser'],
                     $lineaPedido['cantidad'],
                     $lineaPedido['producto']->getPrecioProd()
                 );
-                print_r($lineaPedido);
             }
-            //header("Location:index.php?controller=");
         }
+        unset($_SESSION['selectedProd']);
+        header("Location:index.php?controller=Producto");
+        header("Location:index.php?controller=Producto&action=okPedido");
     }
 
-    public function checkUser(){
+    public function checkUser()
+    {
         include_once 'model/usuarioDAO.php';
         $user = $_POST['user'];
         $pwd = $_POST['pwd'];
 
         $resultado = UsuarioDAO::checkUserPasswd($user, $pwd);
-        
-        if($resultado == "okUser"){
+
+        if ($resultado == "okUser") {
             session_start();
             $_SESSION['activeUser'] = $user;
             header("Location:view/landing.php");
-        } else{
-            header("Location:view/login.php?errorCode=".$resultado);
+        } else {
+            header("Location:view/login.php?errorCode=" . $resultado);
         }
     }
 
-    public function deleteProducto(){
-        if(isset($_POST['id'])){
+    public function deleteProducto()
+    {
+        if (isset($_POST['id'])) {
             $idProd = $_POST['id'];
-        productoDAO::deleteProduct($idProd);
-        header("Location:index.php?controller=Producto");
+            productoDAO::deleteProduct($idProd);
+            header("Location:index.php?controller=Producto");
         }
     }
 
-    public function addProducto(){
-        if(isset($_POST['id'])){
+    public function addProducto()
+    {
+        if (isset($_POST['id'])) {
             $idProd = $_POST['id'];
             $nombre = $_POST['nombre'];
             $precio = $_POST['precio'];
@@ -180,19 +217,21 @@ class ProductoController
         header("Location:index.php?controller=Producto");
     }
 
-    public function editProducto(){
-        if(isset($_POST['id'])){
+    public function editProducto()
+    {
+        if (isset($_POST['id'])) {
             $idProd = $_POST['id'];
             $nombre = $_POST['nombre'];
             $precio = $_POST['precio'];
             $imagen = $_POST['imagen'];
             $categoria = $_POST['categoria'];
             productoDAO::updateProduct($imagen, $nombre, $precio, $categoria, $idProd);
-        header("Location:index.php?controller=Producto");
+            header("Location:index.php?controller=Producto");
         }
     }
 
-    public function getAllCat(){
+    public function getAllCat()
+    {
         $categorias = categoriaDAO::getAllCat();
         return $categorias;
     }

@@ -47,23 +47,26 @@
                                             <bdi><?= $producto->getPrecioProd(); ?>€</bdi>
                                         </div>
                                     </div>
-                                    <form action="<?= '?controller=Producto&action=selection' ?>" method="post">
-                                        <input type="hidden" name="id" value="<?= $producto->getIdProd() ?>">
-                                        <input type="hidden" name="idcat" value="<?= $producto->getIdCat() ?>">
-                                        <button type="submit" class="btn-prod">Comprar</button>
-                                    </form>
-
-                                    <?php if ($_SESSION['activeUser'] == "admin") : ?>
-                                        <form action="<?= '?controller=Producto&action=deleteProducto' ?>" method="post">
+                                    <div class="btn-productos">
+                                        <form action="<?= '?controller=Producto&action=selection' ?>" method="post">
                                             <input type="hidden" name="id" value="<?= $producto->getIdProd() ?>">
-                                            <button type="submit" class="btn-delProd">Eliminar producto</button>
+                                            <input type="hidden" name="idcat" value="<?= $producto->getIdCat() ?>">
+                                            <button type="submit" class="btn-prod">Comprar</button>
                                         </form>
-                                        <form action="<?= '?controller=Producto&action=editProductoIndex' ?>" method="post">
-                                            <?php $postvalue = base64_encode(serialize($producto)); ?>
-                                            <input type="hidden" name="productoObj" value="<?= $postvalue ?>">
-                                            <button type="submit" class="btn-editProd">Editar producto</button>
-                                        </form>
-                                    <?php endif; ?>
+                                        <div class="btn-admins">
+                                            <?php if ($_SESSION['activeUser'] == "admin") : ?>
+                                                <form action="<?= '?controller=Producto&action=editProductoIndex' ?>" method="post">
+                                                    <?php $postvalue = base64_encode(serialize($producto)); ?>
+                                                    <input type="hidden" name="productoObj" value="<?= $postvalue ?>">
+                                                    <button type="submit" class="btn-editProd"><img src="/assets/icons/editar.png" alt="editarProducto"></button>
+                                                </form>
+                                                <form action="<?= '?controller=Producto&action=deleteProducto' ?>" method="post">
+                                                    <input type="hidden" name="id" value="<?= $producto->getIdProd() ?>">
+                                                    <button type="submit" class="btn-delProd"><img src="/assets/icons/papelera.png" alt="eliminarProducto"></button>
+                                                </form>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
                                 </div>
                                 <?php
                                 $cont++;

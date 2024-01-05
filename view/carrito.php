@@ -2,21 +2,23 @@
 <div class="carrito-main">
     <?php
     if (!empty($_SESSION['selectedProd'])) : ?>
-        <div class="">
+        <div class="carritoLleno">
             <div class="table-prods">
                 <table class="tbl-compra">
                     <tr>
-                        <th></th>
-                        <th></th>
-                        <th>PRODUCTO</th>
-                        <th>PRECIO</th>
-                        <th>CANTIDAD</th>
-                        <th>SUBTOTAL</th>
+                        <th width="60.8px"></th>
+                        <th width="80.6px"></th>
+                        <th width="224.8px" style="padding: 9px 12px;">PRODUCTO</th>
+                        <th width="108.1px">PRECIO</th>
+                        <th width="219.3px">CANTIDAD</th>
+                        <th width="138.6px">SUBTOTAL</th>
                     </tr>
                     <?php if (isset($_SESSION['selectedProd'])) : ?>
                         <?php if (count($_SESSION['selectedProd']) > 0) : ?>
                             <?php
                             $lineaPedido = array('producto', 'cantidad');
+                            $contProds = 0;
+                            $sumaTotal = 0;
                             foreach ($_SESSION['selectedProd'] as $lineaPedido) : ?>
                                 <tr>
                                     <td>
@@ -30,27 +32,52 @@
                                     <td>
                                         <img class="tbl-imgProd" src="../assets/images/<?= $lineaPedido['producto']->getImagenProd(); ?>" alt="producto">
                                     </td>
-                                    <td class="tbl-nombreProd"><?= $lineaPedido['producto']->getNombreProd();
-                                                                ?>
+                                    <td style="color: #a81010;" class="tbl-nombreProd"><?= $lineaPedido['producto']->getNombreProd();
+                                                                                        ?>
                                     </td>
                                     <td class="tbl-precioProd"><?= $lineaPedido['producto']->getPrecioProd() . "€";
                                                                 ?>
                                     </td>
-                                    <td><?= $lineaPedido['cantidad'];
-                                        ?>
+                                    <td>
+                                        <div class="cantidadProducto">
+                                            <form action="<?= '?controller=Producto&action=restarProd' ?>" method="post">
+                                                <input type="hidden" name="posicionSelectedProd" value="<?= $contProds ?>">
+                                                <button type="submit" class="restaCantidad">-</button>
+                                            </form>
+
+                                            <p class="valorCantidad"><?= $lineaPedido['cantidad']; ?></p>
+
+                                            <form action="<?= '?controller=Producto&action=sumarProd' ?>" method="post">
+                                                <input type="hidden" name="posicionSelectedProd" value="<?= $contProds ?>">
+                                                <button type="submit" class="sumaCantidad">+</button>
+                                            </form>
+                                        </div>
                                     </td>
                                     <td><?= $lineaPedido['producto']->getPrecioProd() * $lineaPedido['cantidad'] . "€";
                                         ?>
                                     </td>
                                 </tr>
-                            <?php endforeach; ?>
+                            <?php $contProds++;
+                                $sumaTotal = $sumaTotal + ($lineaPedido['producto']->getPrecioProd() * $lineaPedido['cantidad']);
+                            endforeach; ?>
                 </table>
             </div>
-            <form action="?controller=Producto&action=pedidoPagado" method="post">
+            <div class="tbl-totalCompra">
+                <h2>TOTALES DEL CARRITO</h2>
+                <table class="tbl-total">
+                    <tr>
+                        <th style="color: #919191;">TOTAL</th>
+                        <td style="color: #a81010;"> <?= $sumaTotal . "€"?></td>
+                    </tr>
+                </table>
+            </div>
+            <form class="finCompra" action="?controller=Producto&action=pedidoPagado" method="post">
                 <?php $postvalue = base64_encode(serialize($_SESSION['selectedProd'])); ?>
                 <input type="hidden" name="pedido" value="<?= $postvalue ?>">
-                <button type="submit">Pagar pedido</button>
-            </form>
+                <button class="btn-finCompra" type="submit">Finalizar compra</button>
+            </form><br><br>
+            <p class="info-text">Atención: Si se cancela la reserva en menos de 10
+                días de antelación, el importe de la reserva se perderá.</p>
         </div>
     <?php endif; ?>
 <?php endif; ?>
