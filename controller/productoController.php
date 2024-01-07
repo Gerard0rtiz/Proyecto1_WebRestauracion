@@ -16,7 +16,16 @@ class ProductoController
             echo "<div class='mensajeCorrecto'><p>Producto añadido a la cesta correctamente</p></div>";
         }
         if ($mensaje == 'okPedido') {
-            echo "<div class='mensajeCorrecto'><p>Pedido realizado correctamente</p></div>";
+            $prodsPedido = unserialize($_COOKIE['lastPedidoProds']);
+            echo "<div class='mensajeCorrecto'>
+                    <p>Pedido realizado correctamente</p><br>
+                    <p>En su anterior pedido se gastó: " . $_COOKIE['lastPedidoTotal'] . "€</p><br>
+                    <p>Productos del anterior pedido: <br>";
+        
+            foreach ($prodsPedido as $lineaPedido) {
+                echo "-" . $lineaPedido['producto']->getNombreProd() . "<br>";
+            }
+            echo "</p></div>";
         }
         include_once "view/productos.php";
         include_once "view/footer.php";
@@ -83,7 +92,7 @@ class ProductoController
                 session_start();
             }
             $_SESSION['selectedProd'][$posicionProducto]['cantidad']++;
-            
+
             header("Location:index.php?controller=Producto&action=compra");
         }
     }
@@ -96,11 +105,11 @@ class ProductoController
                 session_start();
             }
             $_SESSION['selectedProd'][$posicionProducto]['cantidad']--;
-            if($_SESSION['selectedProd'][$posicionProducto]['cantidad'] == 0){
+            if ($_SESSION['selectedProd'][$posicionProducto]['cantidad'] == 0) {
                 unset($_SESSION['selectedProd'][$posicionProducto]);
                 $_SESSION['selectedProd'] = array_values($_SESSION['selectedProd']);
             }
-            
+
             header("Location:index.php?controller=Producto&action=compra");
         }
     }
@@ -157,6 +166,7 @@ class ProductoController
         include_once 'model/producto.php';
         include_once 'model/pedido.php';
         include_once 'model/pedidoDAO.php';
+        $sumaTotal = 0;
 
         if (isset($_POST['pedido'])) {
             $pedido = unserialize(base64_decode($_POST['pedido']));
@@ -171,11 +181,20 @@ class ProductoController
                     $lineaPedido['cantidad'],
                     $lineaPedido['producto']->getPrecioProd()
                 );
+                $sumaTotal = $sumaTotal + ($lineaPedido['producto']->getPrecioProd() * $lineaPedido['cantidad']);
             }
         }
+        setcookie("lastPedidoTotal",  $sumaTotal, time() + 3600);
+        setcookie("lastPedidoProds",  base64_decode($_POST['pedido']), time() + 3600);
         unset($_SESSION['selectedProd']);
         header("Location:index.php?controller=Producto");
         header("Location:index.php?controller=Producto&action=okPedido");
+        //print_r($_COOKIE['lastPedidoTotal']);
+        //echo "<br>";
+        //$prodsPedido = unserialize($_COOKIE['lastPedidoProds']);
+        //foreach ($prodsPedido as $lineaPedido) {
+        //    echo $lineaPedido['producto']->getNombreProd() . "<br>";
+        //}
     }
 
     public function checkUser()
@@ -189,6 +208,7 @@ class ProductoController
         if ($resultado == "okUser") {
             session_start();
             $_SESSION['activeUser'] = $user;
+            $_SESSION['activePage'] = "inicio";
             header("Location:view/landing.php");
         } else {
             header("Location:view/login.php?errorCode=" . $resultado);

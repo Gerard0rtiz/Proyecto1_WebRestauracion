@@ -1,4 +1,8 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 include_once "config/parameters.php";
 include_once 'controller/productoController.php';
 
@@ -17,11 +21,16 @@ if(!isset($_GET['controller'])){
         }
 
         if($action != 'index'){
+            if($action == 'compra'){
+                $_SESSION['activePage']="carrito";
+            }
             $controller->$action();
         }else{
+            $_SESSION['activePage']="productos";
             $controller->index("");
         }
     }else{
+        $_SESSION['activePage'] = "inicio";
         header("Location:view/landing.php");
     }
 }
