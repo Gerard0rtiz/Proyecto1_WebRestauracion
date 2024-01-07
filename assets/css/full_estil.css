@@ -71,7 +71,7 @@ after {
     margin-top: 110px;
     margin-bottom: -130px;
     width: 100%;
-    max-width: 66%;
+    max-width: 55%;
     background-color: #E0F1B5;
     color: #4F5F39;
     border: 1px solid #8BAF5B;
@@ -103,7 +103,7 @@ header {
 }
 
 .info-hd-black {
-    width: 100%;
+    width: 60%;
     min-height: 30px;
     font-size: 11px;
     font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -338,7 +338,6 @@ footer {
     color: #eeeeee;
     display: flex;
     justify-content: center;
-    height: 100%;
 }
 
 .scnd-footer {
@@ -918,9 +917,16 @@ footer {
     }   
 }
 
-.lateral-sb div {
+.cat-dest-prods {
     padding-top: 160px;
     height: 100%;
+    width: 100%;
+}
+
+.dest-sidebar{
+    height: 100%;
+    width: 100%;   
+    margin-bottom: 50px;
 }
 
 .lateral-sb h3 {
@@ -929,7 +935,7 @@ footer {
     font-size: 15.4px;
     padding-bottom: 8px;
     margin: 0px 0px 8px 50px;
-    border-bottom: 2px dotted #e1e1e1;
+    border-bottom: 1px dotted #e1e1e1;
 }
 
 .destacadosProd {
@@ -938,8 +944,42 @@ footer {
     font-size: 15.4px;
     padding-bottom: 8px;
     margin: 0px 0px 8px 50px;
-    border-bottom: 2px dotted #e1e1e1;
+    border-bottom: 1px dotted #e1e1e1;
     padding-top: 60px;
+}
+
+.ul-destacados{
+    margin-left: 50px;
+    padding: 0px;
+}
+
+.li-destacados{
+    border-bottom: 1px dotted #e1e1e1;
+    list-style-type: none;
+}
+
+.li-destacados p{
+    padding: 0px !important;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 11px;
+    color: #919191;
+}
+
+.txt-dest{
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 12px;
+    font-weight: 600 !important;
+    color: #919191;
+}
+
+.textImg-destacados{
+    display: flex;
+    justify-content: space-between;
+}
+
+.textImg-destacados img{
+    width: 32px;
+    height: 32px;
 }
 
 .lateral-sb p {

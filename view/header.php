@@ -1,9 +1,3 @@
-<?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +17,11 @@ if (session_status() == PHP_SESSION_NONE) {
 
 <body>
     <header>
+        <?php
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        ?>
         <div class="hd-black">
             <div class="info-hd-black">
                 <p>Reserva en Tel. 977 66 37 76 Horario L-V 10h-14h y 16h-20h S-D 10h-20h</p>
@@ -41,9 +40,15 @@ if (session_status() == PHP_SESSION_NONE) {
                     <input type="checkbox" class="menu_hamburguesa" id="menu_hamburguesa">
                     <div class="list-menu">
                         <ul>
-                            <li <?php if($_SESSION['activePage']=="inicio" ){ echo "class='current'";}?>><a href="../index.php?controller=">Inicio</a></li>
-                            <li <?php if($_SESSION['activePage']=="productos" ){ echo "class='current'";}?>><a href="../index.php?controller=Producto">Productos</a></li>
-                            <li <?php if($_SESSION['activePage']=="carrito" ){ echo "class='current'";}?>>
+                            <li <?php if ($_SESSION['activePage'] == "inicio") {
+                                    echo "class='current'";
+                                } ?>><a href="../index.php?controller=">Inicio</a></li>
+                            <li <?php if ($_SESSION['activePage'] == "productos") {
+                                    echo "class='current'";
+                                } ?>><a href="../index.php?controller=Producto">Productos</a></li>
+                            <li <?php if ($_SESSION['activePage'] == "carrito") {
+                                    echo "class='current'";
+                                } ?>>
                                 <a href="../index.php?controller=Producto&action=compra">
                                     Finalizar compra
                                     <?php

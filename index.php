@@ -1,10 +1,10 @@
 <?php
+include_once "config/parameters.php";
+include_once 'controller/productoController.php';
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
-include_once "config/parameters.php";
-include_once 'controller/productoController.php';
 
 if(!isset($_GET['controller'])){
     header('Location:'.$url.'view/login.php');

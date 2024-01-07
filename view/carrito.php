@@ -106,6 +106,34 @@
                     <button class="btn-search" type="submit"><img src="../assets/icons/lupa.png" alt="buscar"></button>
                 </form>
             </div>
+            <div class="dest-sidebar">
+                <h3 class="destacadosProd">DESTACADO</h3>
+                <div>
+                    <ul class="ul-destacados">
+                        <li class="li-destacados">
+                            <div class="textImg-destacados">
+                                <p class="txt-dest">Cerveza de barril 1L</p>
+                                <img src="/assets/images/cerveza.png" alt="cerveza">
+                            </div>
+                            <p>4.99€</p>
+                        </li>
+                        <li class="li-destacados">
+                            <div class="textImg-destacados">
+                                <p class="txt-dest">Pizza con tomate frito y mozarella</p>
+                                <img src="/assets/images/pizza.png" alt="pizza">
+                            </div>
+                            <p>8.99€</p>
+                        </li>
+                        <li class="li-destacados">
+                            <div class="textImg-destacados">
+                                <p class="txt-dest">Calamares rebozados con rodajas de limón</p>
+                                <img src="/assets/images/calamares.png" alt="calamares">
+                            </div>
+                            <p>5.99€</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </aside>
     </div>
 </div>

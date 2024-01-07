@@ -12,6 +12,7 @@ class ProductoController
         $productos = ProductoDAO::getAllProductos();
         $categorias = categoriaDAO::getAllCat();
         include_once "view/header.php";
+
         if ($mensaje == 'okSelection') {
             echo "<div class='mensajeCorrecto'><p>Producto añadido a la cesta correctamente</p></div>";
         }
@@ -189,12 +190,6 @@ class ProductoController
         unset($_SESSION['selectedProd']);
         header("Location:index.php?controller=Producto");
         header("Location:index.php?controller=Producto&action=okPedido");
-        //print_r($_COOKIE['lastPedidoTotal']);
-        //echo "<br>";
-        //$prodsPedido = unserialize($_COOKIE['lastPedidoProds']);
-        //foreach ($prodsPedido as $lineaPedido) {
-        //    echo $lineaPedido['producto']->getNombreProd() . "<br>";
-        //}
     }
 
     public function checkUser()
