@@ -23,6 +23,8 @@ if(!isset($_GET['controller'])){
         if($action != 'index'){
             if($action == 'compra'){
                 $_SESSION['activePage']="carrito";
+            }elseif($action =="showReseñas"){
+                $_SESSION['activePage']="reseñas";
             }
             $controller->$action();
         }else{

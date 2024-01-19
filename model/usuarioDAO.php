@@ -11,10 +11,10 @@ class UsuarioDAO
         $sql = "SELECT * FROM usuarios";
         $stmt = $con->prepare($sql);
         $stmt->execute();
-        $stmt->bind_result($nombreUser, $email, $nombre, $pwd);
+        $stmt->bind_result($nombreUser, $email, $nombre, $pwd, $puntos);
 
         while ($stmt->fetch()) {
-            $usuario = new Usuario($nombreUser, $email, $nombre, $pwd);
+            $usuario = new Usuario($nombreUser, $email, $nombre, $pwd, $puntos);
             $usuarios[] = $usuario;
         }
 
@@ -31,9 +31,9 @@ class UsuarioDAO
         $stmt = $con->prepare("SELECT * FROM usuarios WHERE nombreDeUsuario=?");
         $stmt->bind_param("s", $user);
         $stmt->execute();
-        $stmt->bind_result($user, $email, $nombre, $password);
+        $stmt->bind_result($user, $email, $nombre, $password, $puntos);
         if ($stmt->fetch()) {
-            $usuario = new Usuario($user, $email, $nombre, $password);
+            $usuario = new Usuario($user, $email, $nombre, $password, $puntos);
 
             if ($pwd == $usuario->getPassword()) {
                 return "okUser";

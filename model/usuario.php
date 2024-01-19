@@ -4,12 +4,14 @@ class Usuario{
     private $email;
     private $nombre;
     private $pwd;
+    private $puntos;
 
-    public function __construct($nombreUser, $email, $nombre, $pwd){
+    public function __construct($nombreUser, $email, $nombre, $pwd, $puntos){
         $this->nombreUser=$nombreUser;
         $this->email=$email;
         $this->nombre=$nombre;
         $this->pwd=$pwd;
+        $this->puntos=$puntos;
     }
 
     public function getNombreUser(){
@@ -26,6 +28,10 @@ class Usuario{
 
     public function getPassword(){
         return $this->pwd;
+    }
+
+    public function getPuntos(){
+        return $this->puntos;
     }
 
     public function setNombreUser($nombreUser){
@@ -45,6 +51,11 @@ class Usuario{
 
     public function setPassword($pwd){
         $this->pwd = $pwd;
+        return $this;
+    }
+
+    public function setPuntos($puntos){
+        $this->puntos = $puntos;
         return $this;
     }
 }

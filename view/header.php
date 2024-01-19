@@ -60,6 +60,9 @@
                                     ?>
                                 </a>
                             </li>
+                            <li <?php if ($_SESSION['activePage'] == "reseñas") {
+                                    echo "class='current'";
+                                } ?>><a href="../index.php?controller=api&action=showReseñas">Reseñas</a></li>
                             <li>
                                 <p class="username">
                                     <?php

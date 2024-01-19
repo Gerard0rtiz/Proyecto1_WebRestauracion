@@ -1183,6 +1183,126 @@ footer {
     align-items: center;
 }
 
+/*RESEÑA CARRITO*/
+.section-review{
+}
+
+.review-carrito{
+}
+
+.review-carrito input{
+    margin-top: 20px;
+    width: 35%;
+}
+
+#pedidoID{
+    border-radius: 2px;
+    border: 1px solid #3333339d;
+    width: 30%;
+}
+
+#pointsReview{
+    width: 15%;
+    font-size: 14px;
+    height: 30px;
+}
+
+#inp-text-reseña{
+    width: 100%;
+}
+
+#div-text-reseña{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin-top: 20px;
+    width: 70%;
+}
+
+#div-text-reseña p{
+    width: 28%;
+}
+
+/*TABLA CANJEO DE PUNTOS*/
+.tbl-puntos{
+    width: 100%;
+    border: 1px solid #e1e1e1;
+    background-color: #fcfcfc;
+    border-top: none;
+}
+
+.tr-tbl-puntos{
+    width: 100%;
+}
+
+.tr-tbl-puntos td{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+}
+
+.tr-tbl-puntos p{
+    margin-top: 15px;
+}
+
+.tr-tbl-puntos input{
+    width: 200px;
+    float: left;
+    margin: 3px 3px 3px 0;
+    font: 12px/1.7em "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 17px;
+    border-radius: 2px;
+    border: 1px solid #e1e1e1;
+    color: #919191;
+    padding: 11px;
+    outline: none;
+}
+
+.tr-tbl-puntos button{
+    transition: all 0.3s ease-out;
+    width: 200px;
+    margin: 3px 0;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #a81010;
+    color: #ffffff;
+    border-color: #860000;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 15px;
+    line-height: 1em;
+    font-size: 12px;
+}
+
+.tr-tbl-puntos button:hover{
+    transition: all 0.3s ease-out;
+    width: 200px;
+    margin: 3px 0;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #eb3b3b;
+    color: #ffffff;
+    border-color: #860000;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: none;
+    float: left;
+    padding: 15px;
+    line-height: 1em;
+    font-size: 12px;
+}
+
+.pts-dispo{
+    justify-content: left !important;
+}
+
+.pts-dispo p{
+    font-size: 14px;
+}
+
 /*CARRITO VACÍO*/
 .carrito-main {
     width: 100%;
@@ -1324,6 +1444,64 @@ footer {
     .tbl-subtotal{
         display: none;
     }
+}
+
+/*RESEÑAS*/
+.global-frame{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.superbloque-reviews{
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bloque-reviews{
+    width: 75%;
+    padding-top: 160px;
+    border-right: 1px solid #e1e1e1;
+}
+
+/*ESTILO FILTROS*/
+.filtro-reviews{
+    margin: 0px 0px 30px;
+    background-color: #fcfcfc;
+    border: 1px solid #e1e1e1;
+    font-size: 13px;
+    padding: 0px 40px 0px 10px;
+    color: #666666;
+    height: 32.6px;
+}
+
+/*ESTILO RESEÑA*/
+.reviewsSection{
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #222222;
+}
+
+.review{
+    width: 90%;
+    border-bottom: 2px dotted #e1e1e1;
+    margin-bottom: 50px;
+}
+
+.title-review{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.puntos-review{
+    font-size: 15px;
+    color: #a81010;
+    margin-bottom: 5px;
+    margin-top: -5px;
+}
+
+.text-review{
+    font-size: 15px;
 }
 
 /*GESTION ADMIN*/
