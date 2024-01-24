@@ -1,6 +1,7 @@
 <?php
 include_once "config/parameters.php";
 include_once 'controller/productoController.php';
+include_once 'controller/apiController.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -23,7 +24,7 @@ if(!isset($_GET['controller'])){
         if($action != 'index'){
             if($action == 'compra'){
                 $_SESSION['activePage']="carrito";
-            }elseif($action =="showReseñas"){
+            }elseif($action =="showReviews"){
                 $_SESSION['activePage']="reseñas";
             }
             $controller->$action();
