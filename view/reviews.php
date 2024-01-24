@@ -7,15 +7,13 @@
                     <option value="0">Descendente</option>
                 </select>
             </div>
-            <div class="reviewsSection">
-                <div class="review">
-                    <h1 class="title-review">Precios asequibles</h1>
-                    <p class="puntos-review">4/5 estrellas</p>
-                    <p class="text-review">
-                        Después de comprar una pizza y una bebida, he visto que los precios son bastante asequibles y
-                        no son muy exagerados. Además de que estaba bastante bueno lo que compramos.
-                    </p>
-                </div>
+            <div id="reviewsSection" class="reviewsSection">
+                <!--<div id="review" class="review">
+                    <h1 id="title-review" class="title-review"></h1>
+                    <p id="puntos-review" class="puntos-review">/5 estrellas</p>
+                    <p id="text-review" class="text-review"></p>
+                </div>-->
+
             </div>
         </div>
         <aside class="lateral-sb">
@@ -56,3 +54,4 @@
         </aside>
     </div>
 </div>
+<script src="/model/review.js"></script>
