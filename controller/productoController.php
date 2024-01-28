@@ -174,7 +174,7 @@ class ProductoController
             $idPedido = date("Y-m-d") . "-" . date("H:i:s") . "-" . $_SESSION['activeUser'];
 
             foreach ($pedido as $lineaPedido) {
-                PedidoDAO::insertProduct(
+                lineaPedidoDAO::insertProduct(
                     $idPedido,
                     $lineaPedido['producto']->getIdProd(),
                     date("Y-m-d"),

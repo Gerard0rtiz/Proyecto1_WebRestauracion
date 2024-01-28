@@ -1,5 +1,5 @@
 <?php
-class Pedido{
+class lineaPedido{
     private $idPedido;
     private $idProducto;
     private $fechaDePagado;

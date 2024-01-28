@@ -6,6 +6,9 @@
                     <option selected value="1">Ascendente</option>
                     <option value="0">Descendente</option>
                 </select>
+                <form action="">
+                    <input type="number" min="0" max="5">
+                </form>
             </div>
             <div id="reviewsSection" class="reviewsSection">
                 <!--<div id="review" class="review">
