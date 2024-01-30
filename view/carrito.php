@@ -77,14 +77,25 @@
                         </tr>
                     </table>
                 </div>
+                <div class="propinas">
+                    <p class="info-text">Por favor, selecciona el porcentaje de propina que quieras dar (valor predeterminado = 3%)</p>
+                    <input type="range" id="porcentaje" name="porcentaje" min="1" max="100" value="3">
+
+                    <p>Porcentaje de propina seleccionado: <span id="valorPorcentaje">3</span>%</p>
+
+                    <button class="btn-noPropina" onclick="omitirPropina()">No dar propina</button><br>
+
+                    <button class="btn-finCompra" onclick="calcularTotal()">Recalcular total</button><br>
+                </div>
+
                 <div class="tbl-totalCompra">
                     <h2>TOTALES DEL CARRITO</h2>
                     <table class="tbl-total">
                         <tr>
                             <th style="color: #919191;">TOTAL</th>
-                            <td style="color: #a81010;"> <?= $sumaTotal . "€" ?></td>
+                            <td id="sumaTotal" style="color: #a81010;"> <?= $sumaTotal . "€" ?></td>
                         </tr>
-                    </table>
+                    </table><br>
                 </div>
                 <form class="finCompra" action="?controller=Producto&action=pedidoPagado" method="post">
                     <?php $postvalue = base64_encode(serialize($_SESSION['selectedProd'])); ?>
@@ -96,7 +107,7 @@
                 <section class="section-review">
                     <h1 class="title-review">Deje aqui su reseña:</h1>
                     <form class="review-carrito" action="controller=api&action=" method="post">
-                        <!--AÑADIR METODOS A API-CONTROLLER-->
+                        <!--------------------AÑADIR METODOS A API-CONTROLLER-->
                         ID pedido: <input id="pedidoID" name="idPedido" type="text" style="background-color: #D5D5D5;" type="text" name="id" readonly><br>
                         Título de reseña: <input name="titleReview" type="text"><br>
                         Puntuación: <input id="pointsReview" name="puntosReview" type="number" placeholder="valor entre 0 y 5" min="0" max="5"><br>
@@ -165,3 +176,5 @@
 </aside>
     </div>
 </div>
+
+<script src="model\puntos-propina-InsertReview.js"></script>

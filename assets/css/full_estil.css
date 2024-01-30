@@ -1446,6 +1446,39 @@ footer {
     }
 }
 
+/*PROPINA*/
+.propinas{
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#porcentaje{
+    
+}
+
+.btn-noPropina{
+    background-color: #a81010;
+    width: 120px;
+    color: #ffffff;
+    height: 40px;
+    font-size: 12px;
+    border: 1px solid transparent;
+    padding: 0px;
+    margin-bottom: 25px;
+    border-radius: 2px;
+}
+
+.btn-noPropina:hover{
+    background-color: #eb3b3b;
+    width: 120px;
+    color: #ffffff;
+    height: 40px;
+    font-size: 12px;
+    border: 1px solid transparent;
+    padding: 0px;
+    margin-bottom: 25px;
+    border-radius: 2px;
+}
+
 /*RESEÑAS*/
 .global-frame{
     width: 100%;

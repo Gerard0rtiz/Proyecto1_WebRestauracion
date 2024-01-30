@@ -1,11 +1,11 @@
 <?php
-class lineaPedidoDAO{
-    public static function insertProduct($idPedido, $idProducto, $fechaDePagado, $nombreDeUsuario, $cantidad, $precioUnitario)
+class pedidoDAO{
+    public static function insertProduct($idPedido, $totalPedido, $descuentoPuntos, $propina, $nombreDeUsuario, $fechaPagado)
     {
         $con = database::connect();
 
-        $stmt = $con->prepare("INSERT INTO lineas_pedidos VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sissid", $idPedido, $idProducto, $fechaDePagado, $nombreDeUsuario, $cantidad, $precioUnitario);
+        $stmt = $con->prepare("INSERT INTO pedidos VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sdddss", $idPedido, $totalPedido, $descuentoPuntos, $propina, $nombreDeUsuario, $fechaPagado);
         $stmt->execute();
 
         $con->close();

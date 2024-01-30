@@ -1,5 +1,7 @@
 <?php
 require_once 'model/productoDAO.php';
+require_once 'model/lineaPedidoDAO.php';
+require_once 'model/pedidoDAO.php';
 require_once 'model/categoriaDAO.php';
 
 class ProductoController
@@ -172,18 +174,26 @@ class ProductoController
         if (isset($_POST['pedido'])) {
             $pedido = unserialize(base64_decode($_POST['pedido']));
             $idPedido = date("Y-m-d") . "-" . date("H:i:s") . "-" . $_SESSION['activeUser'];
+            $sumaTotal = 0;
 
             foreach ($pedido as $lineaPedido) {
                 lineaPedidoDAO::insertProduct(
                     $idPedido,
                     $lineaPedido['producto']->getIdProd(),
-                    date("Y-m-d"),
-                    $_SESSION['activeUser'],
                     $lineaPedido['cantidad'],
                     $lineaPedido['producto']->getPrecioProd()
                 );
                 $sumaTotal = $sumaTotal + ($lineaPedido['producto']->getPrecioProd() * $lineaPedido['cantidad']);
             }
+            //agregamos el pedido a la bbdd
+            pedidoDAO::insertProduct(
+                $idPedido,
+                $sumaTotal,
+                0,//codificar valor monetario de los puntos gastados en FLOAT
+                0,//codificar recepción de propinas en FLOAT
+                $_SESSION['activeUser'],
+                date("Y-m-d")
+            );
         }
         setcookie("lastPedidoTotal",  $sumaTotal, time() + 3600);
         setcookie("lastPedidoProds",  base64_decode($_POST['pedido']), time() + 3600);
