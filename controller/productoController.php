@@ -185,12 +185,16 @@ class ProductoController
                 );
                 $sumaTotal = $sumaTotal + ($lineaPedido['producto']->getPrecioProd() * $lineaPedido['cantidad']);
             }
-            //agregamos el pedido a la bbdd
+            
+            if (isset($_POST['valorPropina'])) {
+                $propina = floatval($_POST['valorPropina']);
+            }
+            //Agregamos el pedido a la bbdd
             pedidoDAO::insertProduct(
                 $idPedido,
                 $sumaTotal,
-                0,//codificar valor monetario de los puntos gastados en FLOAT
-                0,//codificar recepción de propinas en FLOAT
+                0, //Codificar valor monetario de los puntos gastados en FLOAT
+                $propina,
                 $_SESSION['activeUser'],
                 date("Y-m-d")
             );

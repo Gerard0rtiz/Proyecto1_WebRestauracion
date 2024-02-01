@@ -7,13 +7,10 @@
 const porcentajeInput = document.getElementById('porcentaje');
 const valorPorcentaje = document.getElementById('valorPorcentaje');
 const sumaTotalElement = document.getElementById('sumaTotal');
-
-//Establecer el valor inicial del input range
-porcentajeInput.value = 3;
+const valorPropinaInput = document.getElementById('valorPropina');
 
 let valorInicialCompra = parseFloat(sumaTotalElement.textContent.replace('€', ''));
 
-//Función que se ejecuta cuando el input type range cambia
 porcentajeInput.addEventListener('input', function () {
     actualizarPorcentaje();
     calcularTotal();
@@ -22,6 +19,7 @@ porcentajeInput.addEventListener('input', function () {
 function actualizarPorcentaje() {
     const porcentaje = porcentajeInput.value;
     valorPorcentaje.textContent = porcentaje;
+    valorPropinaInput.value = porcentaje;
 }
 
 function omitirPropina() {
@@ -33,8 +31,9 @@ function omitirPropina() {
 function calcularTotal() {
     const porcentaje = parseFloat(porcentajeInput.value);
     const totalConPropina = valorInicialCompra + (valorInicialCompra * (porcentaje / 100));
+    const diferenciaPropina = totalConPropina - valorInicialCompra;
     sumaTotalElement.textContent = totalConPropina.toFixed(2) + '€';
+    valorPropinaInput.value = diferenciaPropina.toFixed(2);
 }
 
-//Llamar a calcularTotal() al cargar la página
 calcularTotal();

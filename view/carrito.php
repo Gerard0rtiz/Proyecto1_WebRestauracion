@@ -98,6 +98,7 @@
                 <form class="finCompra" action="?controller=Producto&action=pedidoPagado" method="post">
                     <?php $postvalue = base64_encode(serialize($_SESSION['selectedProd'])); ?>
                     <input type="hidden" name="pedido" value="<?= $postvalue ?>">
+                    <input type="hidden" id="valorPropina" name="valorPropina">
                     <button class="btn-finCompra" type="submit">Finalizar compra</button>
                 </form><br><br>
                 <p class="info-text">Atención: Si se cancela la reserva en menos de 10
