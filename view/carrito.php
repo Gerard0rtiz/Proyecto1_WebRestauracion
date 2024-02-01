@@ -79,13 +79,11 @@
                 </div>
                 <div class="propinas">
                     <p class="info-text">Por favor, selecciona el porcentaje de propina que quieras dar (valor predeterminado = 3%)</p>
-                    <input type="range" id="porcentaje" name="porcentaje" min="1" max="100" value="3">
+                    <input type="range" id="porcentaje" name="porcentaje" min="0" max="100" value="3">
 
                     <p>Porcentaje de propina seleccionado: <span id="valorPorcentaje">3</span>%</p>
 
                     <button class="btn-noPropina" onclick="omitirPropina()">No dar propina</button><br>
-
-                    <button class="btn-finCompra" onclick="calcularTotal()">Recalcular total</button><br>
                 </div>
 
                 <div class="tbl-totalCompra">
