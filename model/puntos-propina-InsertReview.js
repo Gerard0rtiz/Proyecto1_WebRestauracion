@@ -1,4 +1,26 @@
 //PUNTOS
+let resultado;
+let puntos = fetch('http://localhost/index.php?controller=api&action=obtener_puntos')
+    .then(data => data.json())
+    .then(puntos => {
+        resultado = puntos;
+        mostrarPuntosUserActivo();
+    });
+
+//Función para mostrar los puntos actuales del usuario activo
+function mostrarPuntosUserActivo() {
+    //Obtener nombre de usuario activo desde la sesión PHP
+    let usuarioActivo = "<?php echo $_SESSION['activeUser']; ?>";
+
+    //Obtener los puntos del usuario
+    let puntosUsuarioActivo = resultado;
+
+    //Mostrar los puntos en el HTML
+    let ptsDispoElement = document.querySelector('.pts-dispo p');
+    if (ptsDispoElement) {
+        ptsDispoElement.innerText = `Saldo de puntos disponibles: ${puntosUsuarioActivo}`;
+    }
+}
 
 
 /*-----------------------------------------------------------------------*/

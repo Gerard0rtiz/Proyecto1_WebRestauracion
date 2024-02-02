@@ -24,6 +24,19 @@ class UsuarioDAO
         return $usuarios;
     }
 
+    public static function getPuntosByUser($user) {
+        $con = database::connect();
+        $stmt = $con->prepare("SELECT puntos FROM usuarios WHERE nombreDeUsuario=?");
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $stmt->bind_result($puntos);
+        $stmt->fetch();
+        $stmt->close();
+        $con->close();
+        return $puntos;
+    }
+    
+
     public static function checkUserPasswd($user, $pwd)
     {
         $con = database::connect();

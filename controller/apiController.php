@@ -1,6 +1,10 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 require_once 'model/reviewDAO.php';
 require_once 'model/categoriaDAO.php';
+require_once 'model/usuarioDAO.php';
 require_once 'model/review.php';
 
 class apiController
@@ -8,29 +12,12 @@ class apiController
     //API pero por como está montado mi código, me veo forzado a nombrarlo "index"
     public function index()
     {
+        $puntosUser = $_SESSION['activeUser'];
+
         //Mostrar reseñas al entrar a la página de "Reseñas"
         //Verificar si la clave 'action' está presente en $_GET
         if (isset($_GET['action']) && $_GET['action'] == "buscar_review") {
             $reviews = ReviewDAO::getAllReviews();
-
-            // Transformar array asociativo directamente
-            $ReviewArray = [];
-            foreach ($reviews as $review) {
-                $ReviewArray[] = [
-                    'ID' => $review['idReview'],
-                    'nombreUsuario' => $review['nombreUser'],
-                    'calificacion' => $review['calificacion'],
-                    'titulo' => $review['titulo'],
-                    'texto' => $review['texto'],
-                ];
-            }
-            echo json_encode($ReviewArray, JSON_UNESCAPED_UNICODE);
-            return;
-        }
-
-        //Filtrar reseñas por la puntuación introducida dentro del input
-        if (isset($_GET['action']) && $_GET['action'] == "filtrar_review") {
-            $reviews = ReviewDAO::getReviewByCalificacion();
 
             //Transformar array asociativo directamente
             $ReviewArray = [];
@@ -46,6 +33,33 @@ class apiController
             echo json_encode($ReviewArray, JSON_UNESCAPED_UNICODE);
             return;
         }
+
+
+        //Obtener puntos del usuario que está activo
+        if (isset($_GET['action']) && $_GET['action'] == "obtener_puntos") {
+            $puntos = UsuarioDAO::getPuntosByUser($puntosUser);
+            echo json_encode($puntos, JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        //Filtrar reseñas por la puntuación introducida dentro del input
+        /*if (isset($_GET['action']) && $_GET['action'] == "filtrar_review") {
+            $reviews = ReviewDAO::getReviewByCalificacion();
+
+            //Transformar array asociativo directamente
+            $ReviewArray = [];
+            foreach ($reviews as $review) {
+                $ReviewArray[] = [
+                    'ID' => $review['idReview'],
+                    'nombreUsuario' => $review['nombreUser'],
+                    'calificacion' => $review['calificacion'],
+                    'titulo' => $review['titulo'],
+                    'texto' => $review['texto'],
+                ];
+            }
+            echo json_encode($ReviewArray, JSON_UNESCAPED_UNICODE);
+            return;
+        }*/
     }
 
     public function showReviews()
@@ -70,4 +84,3 @@ class apiController
         include_once "view/footer.php";
     }
 }
-?>
