@@ -64,15 +64,13 @@
                     <table class="tbl-puntos">
                         <tr class="row tr-tbl-puntos">
                             <td class="col-4">
-                                <input name="pts-user" type="number" min="0">
-                                <!--añadir etiqueta max con el valor de los puntos del usuario activo para limitarlos-->
+                                <input name="pts-user" type="number" min="0" oninput="limitarPuntos()" id="ptsInput">
                             </td>
                             <td class="col-4">
-                                <button name="btn-pts">Canjear puntos</button>
+                                <button name="btn-pts" onclick="canjearPuntos()">Canjear puntos</button>
                             </td>
                             <td class="col-4 pts-dispo">
                                 <p>Saldo de puntos disponibles: </p>
-                                <!--MOSTRAR PUNTOS ACTUALES DEL USUARIO ACTIVO-->
                             </td>
                         </tr>
                     </table>
@@ -90,15 +88,33 @@
                     <h2>TOTALES DEL CARRITO</h2>
                     <table class="tbl-total">
                         <tr>
+                            <th style="color: #919191;">SUBTOTAL</th>
+                            <td id="subtotal" style="color: #a81010;"> <?= $sumaTotal . "€" ?></td>
+                        </tr>
+                        <tr>
+                            <th style="color: #919191;">DESCUENTO POR PUNTOS</th>
+                            <td id="valor-descPuntos" style="color: #a81010;"></td>
+                        </tr>
+                        <tr>
+                            <th style="color: #919191;">INCREMENTO POR PROPINA</th>
+                            <td id="incre-prop" style="color: #a81010;"></td>
+                        </tr>
+                        <tr>
                             <th style="color: #919191;">TOTAL</th>
                             <td id="sumaTotal" style="color: #a81010;"> <?= $sumaTotal . "€" ?></td>
                         </tr>
                     </table><br>
                 </div>
+
+                <div class="puntos-obtenidos">
+                    <p>Con esta compra, conseguirá la siguiente cantidad de puntos:</p>
+                </div>
+
                 <form class="finCompra" action="?controller=Producto&action=pedidoPagado" method="post">
                     <?php $postvalue = base64_encode(serialize($_SESSION['selectedProd'])); ?>
                     <input type="hidden" name="pedido" value="<?= $postvalue ?>">
                     <input type="hidden" id="valorPropina" name="valorPropina">
+                    <input type="hidden" id="descuentoPorPuntos" name="descuentoPorPuntos">
                     <button class="btn-finCompra" type="submit">Finalizar compra</button>
                 </form><br><br>
                 <p class="info-text">Atención: Si se cancela la reserva en menos de 10

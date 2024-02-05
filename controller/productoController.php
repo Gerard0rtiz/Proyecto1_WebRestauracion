@@ -189,11 +189,14 @@ class ProductoController
             if (isset($_POST['valorPropina'])) {
                 $propina = floatval($_POST['valorPropina']);
             }
+            if (isset($_POST['descuentoPorPuntos'])) {
+                $puntosDesc = floatval($_POST['descuentoPorPuntos']);
+            }
             //Agregamos el pedido a la bbdd
             pedidoDAO::insertProduct(
                 $idPedido,
                 $sumaTotal,
-                0, //Codificar valor monetario de los puntos gastados en FLOAT
+                $puntosDesc,
                 $propina,
                 $_SESSION['activeUser'],
                 date("Y-m-d")

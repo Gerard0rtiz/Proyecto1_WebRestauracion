@@ -59,4 +59,28 @@ class UsuarioDAO
         $stmt->close();
         $con->close();
     }
+
+    public static function updatePuntos($nombreUsuario, $nuevosPuntos) {
+        $con = database::connect();
+    
+        $stmt = $con->prepare("UPDATE usuarios SET puntos = ? WHERE nombreDeUsuario = ?");
+        $stmt->bind_param("is", $nuevosPuntos, $nombreUsuario);
+        $stmt->execute();
+        
+        $stmt->close();
+        $con->close();
+    }
+
+     //Actualizar saldo de puntos  con puntos ganados
+     public static function actualizarSaldoPuntos($nombreUsuario, $nuevosPuntos)
+     {
+        $con = database::connect();
+    
+        $stmt = $con->prepare("UPDATE usuarios SET puntos = ? WHERE nombreDeUsuario = ?");
+        $stmt->bind_param("is", $nuevosPuntos, $nombreUsuario);
+        $stmt->execute();
+        
+        $stmt->close();
+        $con->close();
+     }
 }
