@@ -1,5 +1,5 @@
 <?php
-class lineaPedido{
+class Pedido{
     private $idPedido;
     private $totalPedido;
     private $descuentoPuntos;

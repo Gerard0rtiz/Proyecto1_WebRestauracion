@@ -52,7 +52,7 @@ class ReviewDAO
         return $review;
     }*/
 
-    public static function getReviewByCalificacion($calificacion)
+    /*public static function getReviewByCalificacion($calificacion)
     {
         $con = database::connect();
         $reviews = [];
@@ -86,5 +86,17 @@ class ReviewDAO
         $stmt->close();
         $con->close();
         return $reviews;
+    }*/
+
+    public function addReviewBBDD(){
+        $con = database::connect();
+
+        $stmt = $con->prepare("INSERT INTO reviews VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssiss", $idReview, $nombreUser, $calificacion, $titulo, $texto);
+        $stmt->execute();
+        $result=$stmt->get_result();
+
+        $con->close();
+        return $result;
     }
 }

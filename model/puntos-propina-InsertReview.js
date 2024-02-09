@@ -1,5 +1,32 @@
+//INSERTAR RESEÑAS
+document.getElementById('formReview').addEventListener('submit', function (event) {
+    event.preventDefault(); // Evita que el formulario se envíe de forma convencional
+
+    // Obtén los valores de los inputs
+    const tituloReview = document.getElementById('tituloReview').value;
+    const puntosReview = document.getElementById('puntosReview').value;
+    const textoReview = document.getElementById('textoReview').value;
+
+    // Construye la cadena de consulta con los datos a enviar
+    const queryString = `tituloReview=${encodeURIComponent(tituloReview)}&puntosReview=${encodeURIComponent(puntosReview)}&textoReview=${encodeURIComponent(textoReview)}`;
+
+    // Realiza la solicitud HTTP GET a la API para insertar la reseña
+    fetch(`http://localhost/index.php?controller=api&action=insertar_review&${queryString}`)
+    .then(response => response.json())
+    .then(result => {
+        // Maneja la respuesta de la API (puedes mostrar un mensaje de éxito o manejar errores)
+        console.log(result);
+    })
+    .catch(error => {
+        console.error('Error al enviar la reseña:', error);
+    });
+});
+
+/*---------------------------------------------------------------------------------------*/
+
+
 //PUNTOS
-let puntosUsuarioActivo;
+let puntosUsuarioActivo = 0;
 let descuentoPorPuntos = 0;
 let dineroPorPuntos = document.getElementById('descuentoPorPuntos');
 let puntosGastados = 0;
@@ -15,33 +42,30 @@ fetch('http://localhost/index.php?controller=api&action=obtener_puntos')
     });
 
 function canjearPuntos() {
-    // Obtener el saldo de puntos disponible antes de restar
+    //Obtener el saldo de puntos disponible antes de restar
     const saldoPuntosAnterior = puntosUsuarioActivo;
 
     const puntosCanjeados = parseFloat(document.getElementById('ptsInput').value);
     puntosGastados += puntosCanjeados;
 
-    // Calcular el descuento
+    //Calcular el descuento
     const descuentoUnitario = puntosCanjeados / 200; // 100 puntos = 0.5 euros de descuento
     descuentoPorPuntos += descuentoUnitario;
 
-    // Restar puntos al saldo disponible en la vista
+    //Restar puntos al saldo disponible en la vista
     puntosUsuarioActivo -= puntosCanjeados;
 
-    // Actualizar el saldo de puntos en la vista
+    //Actualizar el saldo de puntos en la vista
     mostrarPuntosUserActivo();
 
-    // Restar puntos en la base de datos
-    restarPuntosEnBaseDeDatos(puntosCanjeados, saldoPuntosAnterior);
-
-    // Calcular el total inicial
+    //Calcular el total inicial
     const sumaTotalElement = document.getElementById('sumaTotal');
     const totalInicial = parseFloat(sumaTotalElement.textContent.replace('€', '')) + descuentoPorPuntos;
 
-    // Aplicar el descuento al total
+    //Aplicar el descuento al total
     const nuevoTotal = totalInicial - descuentoUnitario;
 
-    // Mostrar el descuento por puntos en el HTML
+    //Mostrar el descuento por puntos en el HTML
     const descuentoPorPuntosElement = document.getElementById('valor-descPuntos');
     descuentoPorPuntosElement.textContent = descuentoPorPuntos.toFixed(2) + '€';
 
@@ -55,42 +79,16 @@ function canjearPuntos() {
     // Actualizar la vista con los nuevos puntos
     mostrarPuntosUserActivo();
 
-    // Enviar solicitud al servidor para actualizar los puntos en la base de datos
-    actualizarPuntosEnBaseDeDatos(puntosGastados);
+    //
+    document.getElementById('puntosCanjeadosInput').value = puntosGastados;
 }
 
-// Función para restar puntos en la base de datos
-function restarPuntosEnBaseDeDatos(puntosCanjeados, saldoPuntosAnterior) {
-    // Realizar la llamada a la API para actualizar los puntos en la base de datos
-    fetch('http://localhost/index.php?controller=api&action=actualizar_puntos', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            puntosCanjeados: puntosCanjeados,
-            saldoPuntosAnterior: saldoPuntosAnterior,
-        }),
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                console.log('Puntos actualizados en la base de datos');
-            } else {
-                console.error('Error al actualizar puntos en la base de datos');
-            }
-        })
-        .catch(error => {
-            console.error('Error en la solicitud API:', error);
-        });
-}
-
-// Event listener para actualizar el valor al salir del input
+//Event listener para actualizar el valor al salir del input
 document.getElementById('ptsInput').addEventListener('blur', function () {
     ajustarValorPuntos();
 });
 
-// Event listener para el input de canjeo de puntos
+//Event listener para el input de canjeo de puntos
 document.getElementById('ptsInput').addEventListener('input', function () {
     ajustarValorPuntos();
 });
@@ -132,31 +130,6 @@ function ajustarValorPuntos() {
 
     // Recalcular el total con la propina después de ajustar los puntos
     calcularTotal();
-}
-
-//Actualizar bbdd con nuevo saldo
-function actualizarSaldoPuntosEnBD(puntosGanados) {
-    // Realizar la llamada a la API para actualizar el saldo de puntos en la base de datos
-    fetch('http://localhost/index.php?controller=api&action=actualizar_saldo_puntos', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            puntosGanados: puntosGanados,
-        }),
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                console.log('Saldo de puntos actualizado en la base de datos');
-            } else {
-                console.error('Error al actualizar saldo de puntos en la base de datos');
-            }
-        })
-        .catch(error => {
-            console.error('Error en la solicitud API:', error);
-        });
 }
 
 // Event listener para actualizar el valor al salir del input
@@ -211,6 +184,10 @@ function calcularTotal() {
     //Calcular y mostrar los puntos obtenidos
     const puntosObtenidos = calcularPuntosObtenidos(totalConPropina);
     mostrarPuntosObtenidos(puntosObtenidos);
+
+    //Asignar el valor de puntos obtenidos al input oculto
+    const puntosGanadosInput = document.getElementById('puntosGanados');
+    puntosGanadosInput.value = puntosObtenidos;
 }
 
 function mostrarPuntosObtenidos(puntosObtenidos) {

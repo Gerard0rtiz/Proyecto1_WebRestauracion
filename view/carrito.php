@@ -64,13 +64,13 @@
                     <table class="tbl-puntos">
                         <tr class="row tr-tbl-puntos">
                             <td class="col-4">
-                                <input name="pts-user" type="number" min="0" oninput="limitarPuntos()" id="ptsInput">
+                                <input name="pts-user" type="number" min="0" oninput="limitarPuntosMaximos()" id="ptsInput">
                             </td>
                             <td class="col-4">
                                 <button name="btn-pts" onclick="canjearPuntos()">Canjear puntos</button>
                             </td>
                             <td class="col-4 pts-dispo">
-                                <p>Saldo de puntos disponibles: </p>
+                                <p></p>
                             </td>
                         </tr>
                     </table>
@@ -107,7 +107,7 @@
                 </div>
 
                 <div class="puntos-obtenidos">
-                    <p>Con esta compra, conseguirá la siguiente cantidad de puntos:</p>
+                    <p></p>
                 </div>
 
                 <form class="finCompra" action="?controller=Producto&action=pedidoPagado" method="post">
@@ -115,20 +115,22 @@
                     <input type="hidden" name="pedido" value="<?= $postvalue ?>">
                     <input type="hidden" id="valorPropina" name="valorPropina">
                     <input type="hidden" id="descuentoPorPuntos" name="descuentoPorPuntos">
+                    <input type="hidden" id="puntosGanados" name="puntosGanados">
+                    <input type="hidden" id="puntosCanjeadosInput" name="puntosGastados">
                     <button class="btn-finCompra" type="submit">Finalizar compra</button>
                 </form><br><br>
                 <p class="info-text">Atención: Si se cancela la reserva en menos de 10
                     días de antelación, el importe de la reserva se perderá.</p>
                 <section class="section-review">
                     <h1 class="title-review">Deje aqui su reseña:</h1>
-                    <form class="review-carrito" action="controller=api&action=" method="post">
+                    <form class="review-carrito" action="controller=api&action=add_review" method="post">
                         <!--------------------AÑADIR METODOS A API-CONTROLLER-->
                         ID pedido: <input id="pedidoID" name="idPedido" type="text" style="background-color: #D5D5D5;" type="text" name="id" readonly><br>
-                        Título de reseña: <input name="titleReview" type="text"><br>
-                        Puntuación: <input id="pointsReview" name="puntosReview" type="number" placeholder="valor entre 0 y 5" min="0" max="5"><br>
+                        Título de reseña: <input id="tituloReview" name="titleReview" type="text"><br>
+                        Puntuación: <input id="puntosReview" name="puntosReview" type="number" placeholder="valor entre 0 y 5" min="0" max="5"><br>
                         <div id="div-text-reseña">
                             <p>Texto de reseña: </p>
-                            <textarea id="inp-text-reseña" name="textReview" type="text"></textarea><br>
+                            <textarea id="textoReview" name="textReview" type="text"></textarea><br>
                         </div>
                         <p class="info-text">Cuando finalice la reseña, finalice la compra para publicarla.</p>
                     </form>

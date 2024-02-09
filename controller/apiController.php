@@ -36,52 +36,35 @@ class apiController
 
         //Actualizar puntos cada vez que se canjean
         if (isset($_GET['action']) && $_GET['action'] == 'actualizar_puntos') {
-            // Obtener el JSON enviado desde el cliente
-            $data = json_decode(file_get_contents('php://input'), true);
+            //Obtener el JSON enviado desde el cliente
+            $json_data = file_get_contents('php://input');
+            $data = json_decode($json_data, true);
         
-            // Obtener la cantidad de puntos canjeados
+            // Verificar si la decodificación del JSON fue exitosa
+            if ($data === null) {
+                echo json_encode(['status' => 'error', 'message' => 'Error al decodificar JSON']);
+                exit;
+            }
+        
             $puntosCanjeados = $data['puntosCanjeados'];
-
-            //Obtener puntos actuales
-            $puntosTotales = UsuarioDAO::getPuntosByUser($puntosUser);
-
-            //Cálculo nuevo saldo de puntos
+            $puntosTotales = UsuarioDAO::getPuntosByUser($puntosUser);        
             $puntosNuevos = $puntosTotales - $puntosCanjeados;
-        
-            // Realizar la actualización de puntos en la base de datos
             $updatePuntos = UsuarioDAO::updatePuntos($puntosUser, $puntosNuevos);
-
+        
             echo json_encode($updatePuntos, JSON_UNESCAPED_UNICODE);
             return;
         }
-
-        //Actualizar puntos cuando se finalice la compra con los puntos obtenidos
-        if (isset($_GET['action']) && $_GET['action'] == 'actualizar_saldo_puntos') {
-            // Obtener el JSON enviado desde el cliente
-            $data = json_decode(file_get_contents('php://input'), true);
-    
-            // Obtener el nombre de usuario y los puntos ganados
-            $nombreUsuario = $puntosUser;
-            $puntosGanados = $data['puntosGanados'];
-            
-            //Obtener puntos actuales
-            $puntosTotales = UsuarioDAO::getPuntosByUser($puntosUser);
-
-            //Cálculo nuevo saldo de puntos
-            $puntosNuevos = $puntosTotales + $puntosGanados;
-    
-            //Llamar al método en UsuarioDAO para actualizar el saldo de puntos
-            UsuarioDAO::actualizarSaldoPuntos($nombreUsuario, $puntosNuevos);
-    
-            echo json_encode(['status' => 'success'], JSON_UNESCAPED_UNICODE);
-            return;
-        }
-
 
         //Obtener puntos del usuario que está activo
         if (isset($_GET['action']) && $_GET['action'] == "obtener_puntos") {
             $puntos = UsuarioDAO::getPuntosByUser($puntosUser);
             echo json_encode($puntos, JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        if(isset($_GET['action']) && $_GET['action'] == "add_review"){
+            
+            
             return;
         }
 

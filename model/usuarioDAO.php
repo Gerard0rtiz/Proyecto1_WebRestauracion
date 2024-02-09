@@ -24,7 +24,8 @@ class UsuarioDAO
         return $usuarios;
     }
 
-    public static function getPuntosByUser($user) {
+    public static function getPuntosByUser($user)
+    {
         $con = database::connect();
         $stmt = $con->prepare("SELECT puntos FROM usuarios WHERE nombreDeUsuario=?");
         $stmt->bind_param("s", $user);
@@ -35,7 +36,7 @@ class UsuarioDAO
         $con->close();
         return $puntos;
     }
-    
+
 
     public static function checkUserPasswd($user, $pwd)
     {
@@ -60,27 +61,29 @@ class UsuarioDAO
         $con->close();
     }
 
-    public static function updatePuntos($nombreUsuario, $nuevosPuntos) {
+    //Actualizar puntos cuando se canjean 
+    public static function updatePuntos($nombreUsuario, $nuevosPuntos)
+    {
         $con = database::connect();
-    
+
         $stmt = $con->prepare("UPDATE usuarios SET puntos = ? WHERE nombreDeUsuario = ?");
         $stmt->bind_param("is", $nuevosPuntos, $nombreUsuario);
         $stmt->execute();
-        
+
         $stmt->close();
         $con->close();
     }
 
-     //Actualizar saldo de puntos  con puntos ganados
-     public static function actualizarSaldoPuntos($nombreUsuario, $nuevosPuntos)
-     {
+    //Actualizar saldo de puntos  con puntos ganados finalizando la compra
+    public static function actualizarSaldoPuntos($nombreUsuario, $nuevosPuntos)
+    {
         $con = database::connect();
-    
+
         $stmt = $con->prepare("UPDATE usuarios SET puntos = ? WHERE nombreDeUsuario = ?");
         $stmt->bind_param("is", $nuevosPuntos, $nombreUsuario);
         $stmt->execute();
-        
+
         $stmt->close();
         $con->close();
-     }
+    }
 }

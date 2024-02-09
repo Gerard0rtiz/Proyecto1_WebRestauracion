@@ -16,7 +16,6 @@
                     <p id="puntos-review" class="puntos-review">/5 estrellas</p>
                     <p id="text-review" class="text-review"></p>
                 </div>-->
-
             </div>
         </div>
         <aside class="lateral-sb">

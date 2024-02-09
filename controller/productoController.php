@@ -169,6 +169,10 @@ class ProductoController
         include_once 'model/producto.php';
         include_once 'model/pedido.php';
         include_once 'model/pedidoDAO.php';
+        include_once 'model/lineaPedidoDAO.php';
+        include_once 'model/lineaPedido.php';
+        include_once 'model/usuario.php';
+        include_once 'model/usuarioDAO.php';
         $sumaTotal = 0;
 
         if (isset($_POST['pedido'])) {
@@ -192,6 +196,22 @@ class ProductoController
             if (isset($_POST['descuentoPorPuntos'])) {
                 $puntosDesc = floatval($_POST['descuentoPorPuntos']);
             }
+            if (isset($_POST['puntosGanados'])) {
+                $puntosGanados = floatval($_POST['puntosGanados']);
+            }
+            if (isset($_POST['puntosGastados'])) {
+                $puntosGastados = floatval($_POST['puntosGastados']);
+            }
+            //Restamos los puntos gastados de la bbdd
+            $puntosTotales = UsuarioDAO::getPuntosByUser($_SESSION['activeUser']);
+            $puntosNuevos = $puntosTotales - $puntosGastados;
+            UsuarioDAO::actualizarSaldoPuntos($_SESSION['activeUser'], $puntosNuevos);
+
+            //Agregamos a la bbdd usuario, los puntos
+            $puntosTotales = UsuarioDAO::getPuntosByUser($_SESSION['activeUser']);
+            $puntosActualizados = $puntosTotales + $puntosGanados;
+            UsuarioDAO::actualizarSaldoPuntos($_SESSION['activeUser'], $puntosActualizados);
+            
             //Agregamos el pedido a la bbdd
             pedidoDAO::insertProduct(
                 $idPedido,
