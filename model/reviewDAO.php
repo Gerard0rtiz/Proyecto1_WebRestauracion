@@ -36,6 +36,18 @@ class ReviewDAO
         return $reviews;
     }
 
+    public static function addReviewBBDD($idReview, $nombreUser, $calificacion, $titulo, $texto){
+        $con = database::connect();
+
+        $stmt = $con->prepare("INSERT INTO reviews VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssiss", $idReview, $nombreUser, $calificacion, $titulo, $texto);
+        $stmt->execute();
+        $result=$stmt->get_result();
+
+        $con->close();
+        return $result;
+    }
+
     /*public static function getReviewById($idReview)
     {
         $con = database::connect();
@@ -87,16 +99,4 @@ class ReviewDAO
         $con->close();
         return $reviews;
     }*/
-
-    public function addReviewBBDD(){
-        $con = database::connect();
-
-        $stmt = $con->prepare("INSERT INTO reviews VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssiss", $idReview, $nombreUser, $calificacion, $titulo, $texto);
-        $stmt->execute();
-        $result=$stmt->get_result();
-
-        $con->close();
-        return $result;
-    }
 }

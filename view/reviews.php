@@ -11,11 +11,6 @@
                 </form>
             </div>
             <div id="reviewsSection" class="reviewsSection">
-                <!--<div id="review" class="review">
-                    <h1 id="title-review" class="title-review"></h1>
-                    <p id="puntos-review" class="puntos-review">/5 estrellas</p>
-                    <p id="text-review" class="text-review"></p>
-                </div>-->
             </div>
         </div>
         <aside class="lateral-sb">

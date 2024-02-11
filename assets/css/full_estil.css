@@ -1185,9 +1185,12 @@ footer {
 
 /*RESEÑA CARRITO*/
 .section-review{
+    margin-top: 150px;
+    margin-left: 50px;
 }
 
 .review-carrito{
+    margin-bottom: 50px;
 }
 
 .review-carrito input{
@@ -1220,7 +1223,31 @@ footer {
 }
 
 #div-text-reseña p{
-    width: 28%;
+    width: 120px;
+}
+
+.btn-sendReview{
+    transition: 500ms;
+    border-radius: 5px;
+    border: none;
+    background-color: #a81010;
+    font-size: 15px;
+    color: white;
+    margin: 4px 2px 0px 0px;
+    padding: 15px;
+    line-height: 1em;
+}
+
+.btn-sendReview:hover{
+    transition: 500ms;
+    border-radius: 5px;
+    border: none;
+    background-color: #eb3b3b;
+    font-size: 15px;
+    color: white;
+    margin: 4px 2px 0px 0px;
+    padding: 15px;
+    line-height: 1em;
 }
 
 /*TABLA CANJEO DE PUNTOS*/

@@ -222,11 +222,19 @@ class ProductoController
                 date("Y-m-d")
             );
         }
+        $user = $_SESSION['activeUser'];
+        header("Location:index.php?controller=Producto&action=showAddReview&pedido=$idPedido&user=$user");
         setcookie("lastPedidoTotal",  $sumaTotal, time() + 3600);
         setcookie("lastPedidoProds",  base64_decode($_POST['pedido']), time() + 3600);
         unset($_SESSION['selectedProd']);
-        header("Location:index.php?controller=Producto");
-        header("Location:index.php?controller=Producto&action=okPedido");
+        //header("Location:index.php?controller=Producto");
+        //header("Location:index.php?controller=Producto&action=okPedido");
+    }
+
+    public function showAddReview(){
+        include_once "view/header.php";
+        include_once "view/addReview.php";
+        include_once "view/footer.php";
     }
 
     public function checkUser()

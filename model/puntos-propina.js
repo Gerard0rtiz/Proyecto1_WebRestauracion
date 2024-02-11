@@ -1,30 +1,3 @@
-//INSERTAR RESEÑAS
-document.getElementById('formReview').addEventListener('submit', function (event) {
-    event.preventDefault(); // Evita que el formulario se envíe de forma convencional
-
-    // Obtén los valores de los inputs
-    const tituloReview = document.getElementById('tituloReview').value;
-    const puntosReview = document.getElementById('puntosReview').value;
-    const textoReview = document.getElementById('textoReview').value;
-
-    // Construye la cadena de consulta con los datos a enviar
-    const queryString = `tituloReview=${encodeURIComponent(tituloReview)}&puntosReview=${encodeURIComponent(puntosReview)}&textoReview=${encodeURIComponent(textoReview)}`;
-
-    // Realiza la solicitud HTTP GET a la API para insertar la reseña
-    fetch(`http://localhost/index.php?controller=api&action=insertar_review&${queryString}`)
-    .then(response => response.json())
-    .then(result => {
-        // Maneja la respuesta de la API (puedes mostrar un mensaje de éxito o manejar errores)
-        console.log(result);
-    })
-    .catch(error => {
-        console.error('Error al enviar la reseña:', error);
-    });
-});
-
-/*---------------------------------------------------------------------------------------*/
-
-
 //PUNTOS
 let puntosUsuarioActivo = 0;
 let descuentoPorPuntos = 0;

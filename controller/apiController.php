@@ -39,18 +39,18 @@ class apiController
             //Obtener el JSON enviado desde el cliente
             $json_data = file_get_contents('php://input');
             $data = json_decode($json_data, true);
-        
+
             // Verificar si la decodificación del JSON fue exitosa
             if ($data === null) {
                 echo json_encode(['status' => 'error', 'message' => 'Error al decodificar JSON']);
                 exit;
             }
-        
+
             $puntosCanjeados = $data['puntosCanjeados'];
-            $puntosTotales = UsuarioDAO::getPuntosByUser($puntosUser);        
+            $puntosTotales = UsuarioDAO::getPuntosByUser($puntosUser);
             $puntosNuevos = $puntosTotales - $puntosCanjeados;
             $updatePuntos = UsuarioDAO::updatePuntos($puntosUser, $puntosNuevos);
-        
+
             echo json_encode($updatePuntos, JSON_UNESCAPED_UNICODE);
             return;
         }
@@ -62,12 +62,23 @@ class apiController
             return;
         }
 
-        if(isset($_GET['action']) && $_GET['action'] == "add_review"){
-            
-            
-            return;
+        if (isset($_GET['action']) && $_GET['action'] == "add_review"){
+            $pedidoId = isset($_GET['pedidoId']) ? $_GET['pedidoId'] : null;
+            $username = isset($_GET['username']) ? $_GET['username'] : null;
+            $titulo = isset($_GET['titulo']) ? $_GET['titulo'] : null;
+            $calificacion = isset($_GET['puntos']) ? $_GET['puntos'] : null;
+            $texto = isset($_GET['texto']) ? $_GET['texto'] : null;
+        
+            if ($pedidoId !== null && $username !== null && $titulo !== null && $calificacion !== null && $texto !== null) {
+                $newReview = ReviewDAO::addReviewBBDD($pedidoId, $username, $calificacion, $titulo, $texto);
+                //echo json_encode($newReview, JSON_UNESCAPED_UNICODE);
+                echo json_encode("OK", JSON_UNESCAPED_UNICODE);
+                return;
+            } else {
+                echo json_encode(['error' => 'Faltan parámetros en la solicitud.'], JSON_UNESCAPED_UNICODE);
+                return;
+            }
         }
-
         //Filtrar reseñas por la puntuación introducida dentro del input
         /*if (isset($_GET['action']) && $_GET['action'] == "filtrar_review") {
             $reviews = ReviewDAO::getReviewByCalificacion();

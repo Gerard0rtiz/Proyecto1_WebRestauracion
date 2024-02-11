@@ -121,20 +121,6 @@
                 </form><br><br>
                 <p class="info-text">Atención: Si se cancela la reserva en menos de 10
                     días de antelación, el importe de la reserva se perderá.</p>
-                <section class="section-review">
-                    <h1 class="title-review">Deje aqui su reseña:</h1>
-                    <form class="review-carrito" action="controller=api&action=add_review" method="post">
-                        <!--------------------AÑADIR METODOS A API-CONTROLLER-->
-                        ID pedido: <input id="pedidoID" name="idPedido" type="text" style="background-color: #D5D5D5;" type="text" name="id" readonly><br>
-                        Título de reseña: <input id="tituloReview" name="titleReview" type="text"><br>
-                        Puntuación: <input id="puntosReview" name="puntosReview" type="number" placeholder="valor entre 0 y 5" min="0" max="5"><br>
-                        <div id="div-text-reseña">
-                            <p>Texto de reseña: </p>
-                            <textarea id="textoReview" name="textReview" type="text"></textarea><br>
-                        </div>
-                        <p class="info-text">Cuando finalice la reseña, finalice la compra para publicarla.</p>
-                    </form>
-                </section>
             </div>
         <?php endif; ?>
     <?php endif; ?>
@@ -194,4 +180,4 @@
     </div>
 </div>
 
-<script src="model\puntos-propina-InsertReview.js"></script>
+<script src="model\puntos-propina.js"></script>
