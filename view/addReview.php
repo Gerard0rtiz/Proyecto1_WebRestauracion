@@ -26,3 +26,4 @@ if (session_status() == PHP_SESSION_NONE) {
     </div>
 </div>
 <script src="model\insertReview.js"></script>
+<script src="https://unpkg.com/notie"></script>
