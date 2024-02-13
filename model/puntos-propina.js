@@ -161,6 +161,10 @@ function calcularTotal() {
     //Asignar el valor de puntos obtenidos al input oculto
     const puntosGanadosInput = document.getElementById('puntosGanados');
     puntosGanadosInput.value = puntosObtenidos;
+
+    //Mostrar el incremento por propina en el HTML
+    const increPropElement = document.getElementById('incre-prop');
+    increPropElement.textContent = diferenciaPropina.toFixed(2) + '€';
 }
 
 function mostrarPuntosObtenidos(puntosObtenidos) {

@@ -1,3 +1,4 @@
+//MOSTRAR REVIEWS
 let resultado;
 //Recogida de array asociativo de reviews completas en variable
 let arrayReviews = fetch('http://localhost/index.php?controller=api&action=buscar_review')
@@ -25,3 +26,7 @@ let arrayReviews = fetch('http://localhost/index.php?controller=api&action=busca
     });
   })
   .catch(error => console.error('Error fetching data:', error));
+
+/*-------------------------------------------------------------*/
+
+//FILTRAR REVIEWS

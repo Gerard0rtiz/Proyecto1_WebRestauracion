@@ -71,8 +71,7 @@ class apiController
         
             if ($pedidoId !== null && $username !== null && $titulo !== null && $calificacion !== null && $texto !== null) {
                 $newReview = ReviewDAO::addReviewBBDD($pedidoId, $username, $calificacion, $titulo, $texto);
-                //echo json_encode($newReview, JSON_UNESCAPED_UNICODE);
-                echo json_encode("OK", JSON_UNESCAPED_UNICODE);
+                echo json_encode($newReview, JSON_UNESCAPED_UNICODE);
                 return;
             } else {
                 echo json_encode(['error' => 'Faltan parámetros en la solicitud.'], JSON_UNESCAPED_UNICODE);

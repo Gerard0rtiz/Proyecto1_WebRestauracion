@@ -1564,6 +1564,47 @@ footer {
     font-size: 15px;
 }
 
+/*SECCION QR-INSERTAR-REVIEW*/
+.qr-insert-section{
+    display: flex;
+}
+
+.qr-div{
+    margin-top: 300px;
+    margin-bottom: 50px;
+}
+
+.qr-div p{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.qr-div img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*SECCION PEDIDO INFO ADICIONAL*/
+.div-infoPedido{
+    margin-top: 150px;
+    margin-bottom: 100px;
+    margin-left: 80px;
+}
+
+.div-infoPedido h1{
+    font-size: 32px;
+}
+
+.div-productos tr, th, td{
+    border: 1px solid black;
+}
+
+.div-productos th, td{
+    padding-right: 20px;
+    width: 200px;
+}
+
 /*GESTION ADMIN*/
 
 /*BOTONES PRODUCTOS*/

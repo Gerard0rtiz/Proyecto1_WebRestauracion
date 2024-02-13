@@ -11,6 +11,7 @@
                 </form>
             </div>
             <div id="reviewsSection" class="reviewsSection">
+                <!--reviews mostradas por JS-->
             </div>
         </div>
         <aside class="lateral-sb">

@@ -231,6 +231,34 @@ class ProductoController
         //header("Location:index.php?controller=Producto&action=okPedido");
     }
 
+    public function verPedido(){
+        if(isset($_GET['pedido'])){
+            //Id pedido actual
+            $pedidoID = $_GET['pedido'];
+
+            //modelos
+            include_once "model/producto.php";
+            include_once "model/productoDAO.php";
+            include_once "model/pedido.php";
+            include_once "model/pedidoDAO.php";
+            include_once "model/lineaPedido.php";
+            include_once "model/lineaPedidoDAO.php";
+
+            //Obtención de información
+            $pedido = PedidoDAO::getPedidoById($pedidoID);
+            $lineas_pedidos = lineaPedidoDAO::getlineasPedidoById($pedidoID);
+
+            //vista
+            include_once "view/header.php";
+            include_once "view/viewPedido.php";
+            include_once "view/footer.php";
+        }
+    }
+
+    public function getPedidoInfo(){
+
+    }
+
     public function showAddReview(){
         include_once "view/header.php";
         include_once "view/addReview.php";
