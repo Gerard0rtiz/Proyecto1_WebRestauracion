@@ -78,24 +78,6 @@ class apiController
                 return;
             }
         }
-        //Filtrar reseñas por la puntuación introducida dentro del input
-        /*if (isset($_GET['action']) && $_GET['action'] == "filtrar_review") {
-            $reviews = ReviewDAO::getReviewByCalificacion();
-
-            //Transformar array asociativo directamente
-            $ReviewArray = [];
-            foreach ($reviews as $review) {
-                $ReviewArray[] = [
-                    'ID' => $review['idReview'],
-                    'nombreUsuario' => $review['nombreUser'],
-                    'calificacion' => $review['calificacion'],
-                    'titulo' => $review['titulo'],
-                    'texto' => $review['texto'],
-                ];
-            }
-            echo json_encode($ReviewArray, JSON_UNESCAPED_UNICODE);
-            return;
-        }*/
     }
 
     public function showReviews()

@@ -1526,11 +1526,33 @@ footer {
 }
 
 /*ESTILO FILTROS*/
-.filtro-reviews{
-    margin: 0px 0px 30px;
+.bloque-filtros{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 480px;
+    margin-bottom: 40px;
+}
+
+.bloque-filtros button{
+    transition: all 0.3s ease-out;
+    width: 120px;
+    margin: 3px 0px;
+    background-color: #a81010;
+    color: #ffffff;
+    border-color: #860000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 15px;
+    line-height: 1em;
+    font-size: 14px;
+}
+
+.selector-calificacion{
     background-color: #fcfcfc;
     border: 1px solid #e1e1e1;
-    font-size: 13px;
+    font-size: 15px;
     padding: 0px 40px 0px 10px;
     color: #666666;
     height: 32.6px;
@@ -1596,7 +1618,7 @@ footer {
     font-size: 32px;
 }
 
-.div-productos tr, th, td{
+.div-productos tr, .div-productos th, .div-productos td{
     border: 1px solid black;
 }
 

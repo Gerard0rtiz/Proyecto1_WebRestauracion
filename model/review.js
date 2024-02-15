@@ -30,3 +30,46 @@ let arrayReviews = fetch('http://localhost/index.php?controller=api&action=busca
 /*-------------------------------------------------------------*/
 
 //FILTRAR REVIEWS
+document.addEventListener('DOMContentLoaded', () => {
+  mostrarReseñas(resultado);
+});
+
+document.getElementById('selectorCalificacion').addEventListener('change', filtrarReseñas);
+document.getElementById('orden-ascendente').addEventListener('click', ordenarReseñasAscendente);
+document.getElementById('orden-descendente').addEventListener('click', ordenarReseñasDescendente);
+
+function filtrarReseñas() {
+  const filtroValoracion = parseInt(document.getElementById('selectorCalificacion').value);
+
+  const reseñasFiltradas = resultado.filter(reseña => {
+      return filtroValoracion === 6 || parseInt(reseña.calificacion) === filtroValoracion;
+  });
+  mostrarReseñas(reseñasFiltradas);
+}
+
+function ordenarReseñasAscendente() {
+  resultado.sort((a, b) => a.calificacion - b.calificacion);
+  mostrarReseñas(resultado);
+}
+
+function ordenarReseñasDescendente() {
+  resultado.sort((a, b) => b.calificacion - a.calificacion);
+  mostrarReseñas(resultado);
+}
+function mostrarReseñas(reseñas) {
+  const container = document.getElementById('reviewsSection');
+  container.innerHTML = "";
+
+  reseñas.forEach(review => {
+      const reviewDiv = document.createElement('div');
+      reviewDiv.classList.add('review');
+
+      reviewDiv.innerHTML = `
+          <h1 class="title-review">${review.titulo}</h1>
+          <p class="puntos-review">${review.calificacion}/5 estrellas</p>
+          <p class="text-review">${review.texto}</p>
+      `;
+
+      container.appendChild(reviewDiv);
+  });
+}

@@ -1,13 +1,19 @@
 <div class="global-frame">
     <div class="superbloque-reviews">
         <div class="bloque-reviews">
-            <div>
-                <select class="filtro-reviews">
-                    <option selected value="1">Ascendente</option>
-                    <option value="0">Descendente</option>
-                </select>
+            <div class="bloque-filtros">
+                <button id="orden-ascendente">Ascendente</button>
+                <button id="orden-descendente">Descendente</button>
                 <form action="">
-                    <input type="number" min="0" max="5">
+                    <select id="selectorCalificacion" class="selector-calificacion">
+                        <option selected value="6">Todas las valoraciones</option>
+                        <option value="0">0/5</option>
+                        <option value="1">1/5</option>
+                        <option value="2">2/5</option>
+                        <option value="3">3/5</option>
+                        <option value="4">4/5</option>
+                        <option value="5">5/5</option>
+                    </select>
                 </form>
             </div>
             <div id="reviewsSection" class="reviewsSection">

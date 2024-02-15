@@ -23,5 +23,5 @@ function sendReview() {
 
 //CAMBIAR URL CUANDO SE AÑADA A PLESK SERVER
 //Generación de qr con enlace a vista con informacion adicional del pedido
-let urlQR = 'https://api.qrserver.com/v1/create-qr-code/?data=' + encodeURIComponent(`http://localhost/index.php?controller=Producto&action=verPedido&pedido=${pedidoId}`) +'&amp;size=100x100';
+let urlQR = 'https://api.qrserver.com/v1/create-qr-code/?data=' + encodeURIComponent(`http://localhost/index.php?controller=Producto&action=verPedido&pedido=${pedidoId}`) +'&amp;size=50x50';
 document.getElementById('qrImage').src = urlQR; 
