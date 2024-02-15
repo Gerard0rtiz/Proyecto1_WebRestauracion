@@ -5,7 +5,7 @@ let dineroPorPuntos = document.getElementById('descuentoPorPuntos');
 let puntosGastados = 0;
 
 //Obtener puntos del usuario activo al cargar la página
-fetch('http://localhost/index.php?controller=api&action=obtener_puntos')
+fetch('/index.php?controller=api&action=obtener_puntos')
     .then(data => data.json())
     .then(puntos => {
         puntosUsuarioActivo = puntos;
@@ -111,7 +111,7 @@ document.getElementById('ptsInput').addEventListener('blur', function () {
 });
 
 // Obtener puntos del usuario activo al cargar la página
-fetch('http://localhost/index.php?controller=api&action=obtener_puntos')
+fetch('/index.php?controller=api&action=obtener_puntos')
     .then(data => data.json())
     .then(puntos => {
         puntosUsuarioActivo = puntos;

@@ -7,7 +7,7 @@ function sendReview() {
     let titulo = encodeURIComponent(document.getElementById('tituloReview').value);
     let puntos = encodeURIComponent(document.getElementById('puntosReview').value);
     let texto = encodeURIComponent(document.getElementById('textoReview').value);
-    let apiUrl = `http://localhost/index.php?controller=api&action=add_review&pedidoId=${pedidoId}&username=${username}&titulo=${titulo}&puntos=${puntos}&texto=${texto}`;
+    let apiUrl = `/index.php?controller=api&action=add_review&pedidoId=${pedidoId}&username=${username}&titulo=${titulo}&puntos=${puntos}&texto=${texto}`;
 
     fetch(apiUrl, {
         method: 'GET',
@@ -21,7 +21,6 @@ function sendReview() {
         });
 }
 
-//CAMBIAR URL CUANDO SE AÑADA A PLESK SERVER
 //Generación de qr con enlace a vista con informacion adicional del pedido
-let urlQR = 'https://api.qrserver.com/v1/create-qr-code/?data=' + encodeURIComponent(`http://localhost/index.php?controller=Producto&action=verPedido&pedido=${pedidoId}`) +'&amp;size=50x50';
+let urlQR = 'https://api.qrserver.com/v1/create-qr-code/?data=' + encodeURIComponent(`https://gerardortiz.bernat2024.es/index.php?controller=Producto&action=verPedido&pedido=${pedidoId}`) +'&amp;size=50x50';
 document.getElementById('qrImage').src = urlQR; 

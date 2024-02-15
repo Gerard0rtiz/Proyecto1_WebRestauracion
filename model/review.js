@@ -1,7 +1,7 @@
 //MOSTRAR REVIEWS
 let resultado;
 //Recogida de array asociativo de reviews completas en variable
-let arrayReviews = fetch('http://localhost/index.php?controller=api&action=buscar_review')
+let arrayReviews = fetch('/index.php?controller=api&action=buscar_review')
 .then( data => data.json())
 //Guardar arrayreviews en una variable para poder trabajar con ella resultado=arrayreviews
 .then(arrayReviews => {
