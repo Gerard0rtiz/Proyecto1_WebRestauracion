@@ -1183,6 +1183,19 @@ footer {
 .section-review{
     margin-top: 150px;
     margin-left: 50px;
+	width: 600px;
+}
+
+#puntosReview{
+	width: 25%;
+}
+
+#textoReview{
+	width: 70%;
+}
+
+#div-text-reseña{
+	margin-bottom: 20px;
 }
 
 .review-carrito{
