@@ -785,19 +785,15 @@ footer {
 }
 
 /*FILTROS*/
-.formSelect {
-    margin-left: -10px;
+.filtros{
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-bottom: 20px;
 }
 
-.selectorProds {
-    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin: 0px 0px 30px;
-    background-color: #fcfcfc;
-    border: 1px solid #e1e1e1;
-    font-size: 11px;
-    padding: 0px 40px 0px 10px;
-    color: #666666;
-    height: 32.6px;
+.chk-prod{
+    margin-left: 40px;
+    margin-right: 5px;
+    margin-bottom: 20px;
 }
 
 /*PRODUCTOS*/
@@ -1648,6 +1644,7 @@ footer {
     padding: 10px;
     border-radius: 2px;
     margin-bottom: 20px;
+    margin-left: 40px;
 }
 
 .btn-editProd {

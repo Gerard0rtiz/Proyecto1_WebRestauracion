@@ -7,19 +7,10 @@
                     <div class="container">
                         <!--FILTROS-->
                         <div class="filtros">
-                            <form class="formSelect" action="" method="post">
-                                <select class="selectorProds" name="filtroProductos" id="filtro1">
-                                    <option value="3">Mostrar 3 productos</option>
-                                    <option value="6">Mostrar 6 productos</option>
-                                    <option value="9">Mostrar 9 productos</option>
-                                </select>
-                                <select class="selectorProds" name="filtroCategoria" id="filtro2">
-                                    <option value="Entrantes">Entrantes</option>
-                                    <option value="Bebidas">Bebidas</option>
-                                    <option value="PlatosCombinados">Platos Combinados</option>
-                                    <option value="Principal">Principal</option>
-                                </select>
-                            </form>
+                            <input type="checkbox" class="chk-prod" value="1">Entrantes
+                            <input type="checkbox" class="chk-prod" value="2">Platos Combinados
+                            <input type="checkbox" class="chk-prod" value="3">Principal
+                            <input type="checkbox" class="chk-prod" value="4">Bebidas
                             <?php if ($_SESSION['activeUser'] == "admin") : ?>
                                 <form action="<?= '?controller=Producto&action=addProductoIndex' ?>" method="post">
                                     <button type="submit" class="btn-addProd">Nuevo producto</button>
@@ -31,7 +22,7 @@
                         <div class="row">
                             <?php if (isset($productos) && is_array($productos)) : ?>
                                 <?php foreach ($productos as $producto) : ?>
-                                    <div class="col prod-li">
+                                    <div data-categoria="<?=$producto->getIdCat()?>" class="col prod-li">
                                         <img src="../assets/images/<?= $producto->getImagenProd(); ?>" alt="">
                                         <div class="text-btn-prod">
                                             <div class="text-prod">
@@ -115,3 +106,4 @@
         </aside>
     </div>
 </div>
+<script src="model/filtrosProductos.js"></script>
