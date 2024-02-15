@@ -25,3 +25,10 @@ fallos corregidos al plesk.
 -Para corregir los problemas con la api, simplemente he seguido usando el metodo GET, pero cambié esos metodos que pensaba que iban ahi, a hacerlos con PHP, y el QR lo solucioné simplemente concatenando la url a la que quería que me enviara el qr pero esa url
 la codifiqué para que funcionara bien. Para la implementacion del notieJS simplemente estuve haciendo pruebas y buscando por diferentes webs para solucionar fallos absurdos como por ejemplo dejarme la etiqueta <script> en algunas vistas o creando mal las notificaciones.
 Y para plesk simplemente he seguido importando el proyecto en él haciendo todas las pruebas pertinentes hasta tenerlo finalizado el proyecto.
+
+usuarios disponibles:
+  ADMIN-> username: admin
+          pwd: 123
+
+  USER-> username: user
+          pwd: user
