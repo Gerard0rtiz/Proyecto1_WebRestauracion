@@ -7,8 +7,7 @@ if (session_status() == PHP_SESSION_NONE) {
 <div class="qr-insert-section">
     <section class="section-review">
         <form class="review-carrito">
-            <h1 style="font-size: 30px">¡Pedido realizado correctamente!</h1>
-            <h2 class="title-review">Deje aqui su reseña:</h2>
+            <h2 class="title-review-2">Deje aqui su reseña:</h2>
             <input id="pedidoID" name="idPedido" type="hidden" value="<?= $_GET['pedido'] ?>" readonly><br>
             <input id="nombreDeUsuario" name="nombreDeUsuario" type="hidden" value="<?= $_GET['user'] ?>" readonly><br>
             Título de reseña: <input id="tituloReview" name="titleReview" type="text"><br>

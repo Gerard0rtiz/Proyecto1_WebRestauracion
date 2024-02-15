@@ -15,6 +15,11 @@ fetch('/index.php?controller=api&action=obtener_puntos')
     });
 
 function canjearPuntos() {
+    notie.alert({
+        type: 1, // optional, default = 4, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
+        text: '¡Puntos canjeados correctamente!',
+        position: 'top' // optional, default = 'top', enum: ['top', 'bottom']
+    })
     //Obtener el saldo de puntos disponible antes de restar
     const saldoPuntosAnterior = puntosUsuarioActivo;
 
@@ -52,7 +57,6 @@ function canjearPuntos() {
     // Actualizar la vista con los nuevos puntos
     mostrarPuntosUserActivo();
 
-    //
     document.getElementById('puntosCanjeadosInput').value = puntosGastados;
 }
 
@@ -142,6 +146,12 @@ function actualizarPorcentaje() {
 }
 
 function omitirPropina() {
+    notie.alert({
+        type: 4, // optional, default = 4, enum: [1, 2, 3, 4, 5, 'success', 'warning', 'error', 'info', 'neutral']
+        text: 'Propina omitida...',
+        time: 2, // optional, default = 3, minimum = 1,
+        position: 'top' // optional, default = 'top', enum: ['top', 'bottom']
+      })
     porcentajeInput.value = 0;
     actualizarPorcentaje();
     calcularTotal();

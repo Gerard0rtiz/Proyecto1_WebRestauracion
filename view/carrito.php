@@ -180,4 +180,5 @@
     </div>
 </div>
 
+<script src="https://unpkg.com/notie"></script>
 <script src="model\puntos-propina.js"></script>

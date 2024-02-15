@@ -90,7 +90,7 @@ header {
     width: 100%;
     background-color: white;
     top: 0;
-    z-index: 1000;
+    z-index: 1;
     border-bottom: 2px solid #ededed;
 }
 
@@ -1569,6 +1569,12 @@ footer {
 .title-review{
     font-size: 25px;
     font-weight: 600;
+}
+
+.title-review-2{
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: -30px;
 }
 
 .puntos-review{
