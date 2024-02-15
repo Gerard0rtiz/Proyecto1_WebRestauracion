@@ -42,9 +42,26 @@ function filtrarReseñas() {
   const filtroValoracion = parseInt(document.getElementById('selectorCalificacion').value);
 
   const reseñasFiltradas = resultado.filter(reseña => {
-      return filtroValoracion === 6 || parseInt(reseña.calificacion) === filtroValoracion;
+    return filtroValoracion === 6 || parseInt(reseña.calificacion) === filtroValoracion;
   });
-  mostrarReseñas(reseñasFiltradas);
+
+  if (reseñasFiltradas.length === 0) {
+    // No hay reseñas disponibles
+    mostrarReseñas(reseñasFiltradas);
+    notie.alert({
+      type: 2,
+      text: 'No hay reseñas disponibles',
+      position: 'top'
+    });
+  } else {
+    // Mostrar las reseñas filtradas
+    notie.alert({
+      type: 1,
+      text: 'Hay reseñas disponibles',
+      position: 'top'
+    });
+    mostrarReseñas(reseñasFiltradas);
+  }
 }
 
 function ordenarReseñasAscendente() {

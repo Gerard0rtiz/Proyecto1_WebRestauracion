@@ -58,4 +58,6 @@
         </aside>
     </div>
 </div>
+
+<script src="https://unpkg.com/notie"></script>
 <script src="/model/review.js"></script>
